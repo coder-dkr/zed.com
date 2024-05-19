@@ -50,7 +50,7 @@
                             </div>
 
                             <button
-                                class="guestFormBtn bg-[#1d9bf0] py-1 rounded-3xl font-semibold text-lg hover:bg-sky-700 w-[300px] py-2">Guest
+                                class="guestFormBtn bg-[#1d9bf0] rounded-3xl font-semibold text-lg hover:bg-sky-700 w-[300px] py-2 outline-none border-none">Guest
                                 Visit</button>
                             <p class="text-[0.725rem] leading-none text-[#6c7176] w-[332px]">By signing up, you agree to
                                 the <span class="imp-text hover:underline">Terms of Service</span> and <span
@@ -97,9 +97,9 @@
         </footer>
     </main>
 
-   <section id="DemoLoginPop" class="popUpCont hidden absolute z-[998] min-w-[100%] min-h-[100%] bg-transparent md:bg-[rgba(0,0,0,0.2)]">
+   <section id="DemoLoginPop" class="popUpCont hidden absolute z-[998] min-w-[100%] min-h-[100%] bg-black md:bg-[rgba(0,0,0,0.2)]">
     
-       <div class="popUpcontents absolute z-[999] flex flex-col justify-between gap-10 w-[100vw] h-full mx-auto text-white  px-4 py-3 md:w-[600px] md:h-fit md:rounded-xl md:pb-3 bg-black md:top-1/2 md:left-1/2 md:-translate-x-[50%] md:-translate-y-[50%]">
+       <div class="popUpcontents absolute z-[999] flex flex-col justify-between gap-10 w-[100vw] h-[100vh] mx-auto text-white  px-4 py-3 md:w-[600px] md:h-fit md:rounded-xl md:pb-3 bg-black md:top-1/2 md:left-1/2 md:-translate-x-[50%] md:-translate-y-[50%]">
         <div class="formBtndiv flex flex-col gap-7">
 
         
@@ -113,12 +113,12 @@
             <span class="peFhead text-[1.65rem] font-semibold">Create guest account</span>
             <div class="nameINpBox relative h-fit w-[100%]">
                 <input class="inputEntity py-4 w-[100%] outline-none bg-transparent border-[1px] border-solid border-[#2c2f31] rounded-lg px-3 duration-[400ms]" type="text" name="" id="nameInput" >
-                <label class="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-2" for="name">Name</label>
+                <label class="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-1" for="name">Name</label>
             </div>
 
             <div class="nameINpBox relative h-fit w-[100%]">
                 <input class="inputEntity py-4 w-[100%] outline-none  bg-transparent border-[1px] border-[#2c2f31] rounded-lg px-3 duration-[400ms]" type="text" name="" id="usernameInput" >
-                <label class="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-2" for="name">Username</label>
+                <label class="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-1" for="name">Username</label>
             </div>
             <span class="useEmailTxt absolute text-[0.9rem] text-blue-400 font-semibold tracking-wide right-4 -bottom-8 md:right-10">Add @ in username</span>
         </div>
@@ -126,11 +126,11 @@
              <h2 class="font-semibold ">Date of Birth</h2>
              <p class="text-[0.8rem] text-[#71767b] max-w-[440px]">This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
             <div class="dateInpBox w-[200px]">
-                <input class="outline-none inputEntity  bg-transparent px-5 py-6 border-[1px] border-[#2c2f31] rounded-lg" type="date" name="" id="dateofBirth">
+                <input class="outline-none inputEntity  bg-transparent px-5 py-6 border-[1px] border-[#2c2f31] rounded-lg placeholder:text-slate-6003" type="date" name="" id="dateofBirth" placeholder="dd/mm/yyyy">
             </div>
         </div>
     </div>
-        <button class="demonLoginBtn bg-white text-black mx-8 mt-5 mb-1 py-2 rounded-3xl text-lg font-semibold">Login</button>
+        <button class="demonLoginBtn relative bg-white text-black mx-8 mt-5 mb-1 py-2 rounded-3xl text-lg font-semibold">Login</button>
 
        </div>
    </section>

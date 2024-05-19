@@ -22,8 +22,8 @@
     transform: translate(-50%,-50%);
 }
 .activeForLabel{
-   margin-top: -0.85rem;
-   margin-bottom: -0.75rem;
+   margin-top: -0.9rem;
+   margin-bottom: -0.85rem;
    background: black;
    z-index: 2;
    color: rgb(59, 146, 253);
@@ -33,3 +33,4 @@
     border: 2px solid rgb(59, 146, 253);
     border-radius: 0.5rem;
 }
+
