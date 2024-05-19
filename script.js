@@ -39,7 +39,7 @@ guestFormBtn.addEventListener("click", () => {
     setInterval(loginDisb,100);
     function switchToWeb (){
         crossPopBtn.click()
-        // window.open('mainWeb.html','_self');
+        window.open('mainWeb.html','_self');
     }
     demonLoginBtn.addEventListener("click",switchToWeb)
 

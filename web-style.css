@@ -1,8 +1,11 @@
 .web-header-active{
+    transition: 0.3s; 
     font-weight: 600;
-    color: white;   
+    color: white;  
 }
+
 .web-header-active span{
+    transition: 0.3s; 
     border-radius: 4px;
     border-bottom: 4px solid #1d9bf0;
 }

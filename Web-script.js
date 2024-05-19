@@ -38,3 +38,14 @@ socialItem.forEach((e)=>{
         
     })
 })
+
+
+
+//bottom nav logic
+setInterval(function(){
+    document.querySelector(".web-bottomNavBar").classList.remove("bg-[rgba(0,0,0,0.4)]")
+},2000);
+window.onscroll = function(){
+    document.querySelector(".web-bottomNavBar").classList.add("bg-[rgba(0,0,0,0.4)]")
+    
+}
