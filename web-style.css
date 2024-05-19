@@ -1,0 +1,49 @@
+.web-header-active{
+    font-weight: 600;
+    color: white;   
+}
+.web-header-active span{
+    border-radius: 4px;
+    border-bottom: 4px solid #1d9bf0;
+}
+
+/* social item */
+.active-socialItem{
+    color: #1b92e3;
+
+}
+.active-socialItem .siBg{
+    background-color: #1b93e338;
+    
+}
+.active-socialItem .siBg svg{
+    fill: #1b92e3;
+
+}
+/* for green social item */
+
+
+.active-socialItem-special-green{
+    color: rgb(0,186,124);
+
+}
+.active-socialItem-special-green .siBg{
+    background-color: rgba(0, 186, 124, 0.195)
+    
+}
+.active-socialItem-special-green .siBg svg{
+    fill: rgb(0,186,124);
+}
+/* for pink social item */
+
+.active-socialItem-special-pink{
+    color: rgb(249,24,128);
+
+}
+.active-socialItem-special-pink .siBg{
+    background-color: rgba(249, 24, 129, 0.204)
+    
+}
+.active-socialItem-special-pink .siBg svg{
+    fill: rgb(249,24,128);
+}
