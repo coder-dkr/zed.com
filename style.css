@@ -16,7 +16,6 @@
   color: #2ea2f0;
 }
 .popUpcontents{
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
