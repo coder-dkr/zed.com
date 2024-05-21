@@ -3,6 +3,13 @@
     font-weight: 600;
     color: white;  
 }
+.web-NavLogoBg{
+    transition: 0.2s;
+}
+.web-NavLogoBg:hover{
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
 
 .web-header-active span{
     transition: 0.3s; 
@@ -50,3 +57,26 @@
 .active-socialItem-special-pink .siBg svg{
     fill: rgb(249,24,128);
 }
+
+
+/* ender port styles */
+.searchBarStylingWeb input{
+    background-color: black;
+    border-color: #1987d2;
+}
+.searchBarStylingWeb svg{
+    fill:#1d9bf0;
+    
+}
+
+
+#web-ThirdZone::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+#web-ThirdZone {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+

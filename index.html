@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-black mx-auto max-w-[100vw] max-h-[100vh] sm:overflow-hidden">
+<body class="bg-slate-600 mx-auto max-w-[100vw] max-h-[100vh] sm:overflow-hidden">
     <main class="wholeContainer text-white w-[100vw] h-[100vh] flex flex-col gap-8
     md:gap-0 md:justify-around">
         <div class="zonebox py-10 px-10 flex flex-col gap-14  lg:flex-row md:justify-around lg:items-center ">
@@ -97,7 +97,30 @@
         </footer>
     </main>
 
-   <section id="DemoLoginPop" class="popUpCont hidden absolute z-[998] min-w-[100%] min-h-[100%] bg-black md:bg-[rgba(0,0,0,0.2)]">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <section id="DemoLoginPop" class="popUpCont  absolute z-[998] min-w-[100%] min-h-[100%] bg-black md:bg-[rgba(0,0,0,0.2)]">
     
        <div class="popUpcontents absolute z-[999] flex flex-col justify-between gap-10 w-[100vw] h-[100vh] mx-auto text-white  px-4 py-3 md:w-[600px] md:h-fit md:rounded-xl md:pb-3 bg-black md:top-1/2 md:left-1/2 md:-translate-x-[50%] md:-translate-y-[50%]">
         <div class="formBtndiv flex flex-col gap-7">
@@ -122,13 +145,27 @@
             </div>
             <span class="useEmailTxt absolute text-[0.9rem] text-blue-400 font-semibold tracking-wide right-4 -bottom-8 md:right-10">Add @ in username</span>
         </div>
-        <div class="dateofBirthCont px-4 flex flex-col mt-5 gap-2 md:px-10 ">
-             <h2 class="font-semibold ">Date of Birth</h2>
-             <p class="text-[0.8rem] text-[#71767b] max-w-[440px]">This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
-            <div class="dateInpBox w-[200px]">
-                <input class="outline-none inputEntity  bg-transparent px-5 py-6 border-[1px] border-[#2c2f31] rounded-lg placeholder:text-slate-6003" type="date" name="" id="dateofBirth" placeholder="dd/mm/yyyy">
+
+
+
+
+
+        <div class="profilePicInputBox px-4 flex flex-col mt-5 gap-1 md:px-10 ">
+             <h2 class="font-semibold text-xl tracking-wide">Profile picture</h2>
+             <p class="text-[0.8rem] text-[#71767b] max-w-[440px]">A picture helps people recognize you and lets you know when you’re signed in to your account</p>
+            <div class="picInputBox w-2/3 bg-transparent px-5 py-6 pt-5 border-[2px] border-[#2c2f31] border-dashed rounded-lg  flex justify-center items-center">
+                <input class="outline-none hidden " type="file" name="" id="guestUserProfilePic">
+                <label for="guestUserProfilePic" class="text-xl font-mono cursor-pointer">Upload A picture</label>
             </div>
         </div>
+
+
+
+
+
+
+
+
     </div>
         <button class="demonLoginBtn relative bg-white text-black mx-8 mt-5 mb-1 py-2 rounded-3xl text-lg font-semibold">Login</button>
 
