@@ -85,7 +85,7 @@ const updatePreviewUserImg =()=>{
 
                 }
 
-                Navigater("/guest-user-home")
+                Navigater("/guest/user/home")
                 document.title = 'Home / Z'
             }
 
@@ -160,7 +160,7 @@ const updatePreviewUserImg =()=>{
                                             <hr className="Options-div border-[1px]" />
                                             <span className="absolute -top-3.5 left-[8.5rem] px-2 bg-black">or</span>
                                         </div>
-                                        <Link to="/guest-login"><button className="guestFormBtn bg-[#1d9bf0] rounded-3xl font-semibold text-lg hover:bg-sky-700 w-[300px] py-2 outline-none border-none" onClick={guestVisitLogin}>Guest Visit</button></Link>
+                                        <Link to="/guest/login"><button className="guestFormBtn bg-[#1d9bf0] rounded-3xl font-semibold text-lg hover:bg-sky-700 w-[300px] py-2 outline-none border-none" onClick={guestVisitLogin}>Guest Visit</button></Link>
 
                                         <p className="text-[0.725rem] leading-none text-[#6c7176] w-[332px]">By signing up, you agree to
                                             the <span className="imp-text hover:underline">Terms of Service</span> and <span
