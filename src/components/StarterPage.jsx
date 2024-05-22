@@ -2,7 +2,9 @@ import { document } from 'postcss'
 import react, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-const StarterPage = () => {
+
+
+const StarterPage = (props) => {
 
 const usernameInputref = useRef();
 const nameInputref = useRef();
@@ -207,7 +209,7 @@ const updatePreviewUserImg =()=>{
                     </footer>
                 </main>
 
-                <section ref={DemoLoginPopref} id="DemoLoginPop" className="popUpCont hidden absolute z-[998] min-w-[100%] min-h-[100%] bg-black md:bg-[rgba(0,0,0,0.2)]">
+                <section ref={DemoLoginPopref} id="DemoLoginPop" className={`popUpCont ${props.hide} absolute z-[998] min-w-[100%] min-h-[100%] bg-black md:bg-[rgba(0,0,0,0.2)]`}>
 
                     <div className="popUpcontents absolute z-[999] flex flex-col justify-between gap-10 w-[100vw] h-[100vh] mx-auto text-white  px-4 py-3 md:w-[600px] md:h-fit md:rounded-xl md:pb-3 bg-black md:top-1/2 md:left-1/2 md:-translate-x-[50%] md:-translate-y-[50%]">
                         <div className="formBtndiv flex flex-col gap-7">

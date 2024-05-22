@@ -17,8 +17,8 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route exact path="/" element={<StarterPage/>}/>
-        <Route exact path="/guest_login" element={<StarterPage/>}/>
+        <Route exact path="/" element={<StarterPage hide="hidden"/>}/>
+        <Route exact path="/guest_login" element={<StarterPage hide="nothidden" />}/>
         <Route exact path="/guest_user_home"  element={<WebUserHome/>}/>
       </Routes>
       </Router>
