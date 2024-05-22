@@ -1,5 +1,5 @@
 import { document } from 'postcss'
-import react, { useRef } from 'react'
+import react, { useRef , useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,6 +14,7 @@ const StarterPagePgref = useRef();
 const guestUserProfilePicref = useRef();
 const UserPostFieldUserImgref = useRef();
 
+// const [mybgcolor,setmybgcolor] = useState({background : 'black'})
 
     let Navigater = useNavigate()
 
@@ -43,7 +44,9 @@ const updatePreviewUserImg =()=>{
         demonLoginBtnref.current.classList.add("cursor-not-allowed")
         demonLoginBtnref.current.classList.add("opacity-[0.5]")
         document.title = 'Guest Login for Z'
+
         StarterPagePgref.current.style.background = "#242d34";
+        // setmybgcolor({background : "#242d34"})
 
 
 
@@ -62,7 +65,7 @@ const updatePreviewUserImg =()=>{
             }
             else {
             
-                // let guestPfp =  document.getElementById("guestUserProfilePic").files[0];
+        // let guestPfp =  document.getElementById("guestUserProfilePic").files[0];
         //   let reader = new FileReader();
         //   reader.onloadend = function() {
         //       let base64data = reader.result;
@@ -96,7 +99,10 @@ const updatePreviewUserImg =()=>{
     const guestPopUpClose = () => {
         document.title = 'Zed - It is What Is'
         DemoLoginPopref.current.classList.add("hidden");
+
         StarterPagePgref.current.style.background = "black";
+        // setmybgcolor({background : "black"})
+        // setmybgcolor({background : `${props.mybgrang}`})
 
 
         usernameInputref.current.value = "";
@@ -120,11 +126,24 @@ const updatePreviewUserImg =()=>{
         }
     }
 
+    const checkMyBtnrang = ()=>{
+        if (nameInputref.current.value === "" || usernameInputref.current.value === "") {
+            demonLoginBtnref.current.classList.add("opacity-[0.5]")
+            demonLoginBtnref.current.classList.add("cursor-not-allowed")
+
+        }
+        else {
+            demonLoginBtnref.current.classList.remove("opacity-[0.5]")
+            demonLoginBtnref.current.classList.remove("cursor-not-allowed")
+
+        }
+    }
+
 
     return (
         <>
 
-            <div ref={StarterPagePgref} id="StarterPagePg" className="bg-black mx-auto max-w-[100vw] max-h-[100vh] sm:overflow-hidden">
+            <div ref={StarterPagePgref} onLoad={checkMyBtnrang} id="StarterPagePg" className={`${props.bgrang} mx-auto max-w-[100vw] max-h-[100vh] sm:overflow-hidden`}>
                 <main className="wholeContainer text-white w-[100vw] h-[100vh] flex flex-col gap-8
       md:gap-0 md:justify-around">
                     <div className="zonebox py-10 px-10 flex flex-col gap-14  lg:flex-row md:justify-around lg:items-center ">
