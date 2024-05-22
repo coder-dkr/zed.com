@@ -18,8 +18,8 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<StarterPage/>}/>
-        <Route exact path="/guest/login" element={<StarterPage/>}/>
-        <Route exact path="/guest/user/home"  element={<WebUserHome/>}/>
+        <Route exact path="/guestlogin" element={<StarterPage/>}/>
+        <Route exact path="/guestuserhome"  element={<WebUserHome/>}/>
       </Routes>
       </Router>
     </>

@@ -1,5 +1,5 @@
 import { document } from 'postcss'
-import React ,{ useRef }from 'react'
+import React ,{ useRef , useState , useEffect }from 'react'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,6 +8,20 @@ document.title = 'Home / Z'
 
 
 var userDetailList = JSON.parse(localStorage.getItem("userDetails"))
+const [guestnameState,setguestname] = useState("Guest User")
+const [guestUsernameState,setguestUsernameState] = useState("@username")
+
+useEffect(() => {
+    function SetUserDetails(){
+        if(userDetailList !== null){
+            setguestname(userDetailList[0].guestName)
+            setguestUsernameState(userDetailList[0].guestUserName)
+        }
+    }
+    SetUserDetails()
+}, [])
+
+
 
 // window.onload = function(){
 //     // document.getElementById("web-firstzone").querySelector("userSettedName").innerHTML =`${ userDetailList[0].guestName}`;
@@ -216,8 +230,8 @@ const LeaveGuestMode = ()=>{
                         <img src="img/defaultUserImg.jpg"  id="VerticalNavUserImg" alt=""/>
                     </div>
                     <div className="web-UserSettedDetails hidden lg:flex flex-col justify-center items-start leading-0">
-                            <span id="" className="userSettedName hidden lg:inline-flex text-sm font-bold ">{userDetailList[0].guestName === null?"daigon": userDetailList[0].guestName } </span>    
-                            <span id="" className="userSettedUserName text-[#70757a] text-base font-[500]">{userDetailList[0].guestUserName === null?"username":userDetailList[0].guestUserName }</span>    
+                            <span id="" className="userSettedName hidden lg:inline-flex text-sm font-bold ">{guestnameState} </span>    
+                            <span id="" className="userSettedUserName text-[#70757a] text-base font-[500]">{guestUsernameState}</span>    
                     </div>
                     <div className="web-3dotnav absolute  w-7 h-7 rounded-full hidden  lg:flex justify-center items-center right-5 top-[6px] ">
                       <i className="fa-solid fa-ellipsis text-[#71767b]  cursor-pointer"></i>
