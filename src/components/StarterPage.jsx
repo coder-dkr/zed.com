@@ -223,12 +223,12 @@ const updatePreviewUserImg =()=>{
                                 <span className="peFhead text-[1.65rem] font-semibold">Create guest account</span>
                                 <div className="nameINpBox relative h-fit w-[100%]">
                                     <input onFocus={ActiveInputLabelStyle} onBlur={DeActiveInputLabelStyle} onInput={ActiveGuestLoginBtn} className="inputEntity py-4 w-[100%] outline-none bg-transparent border-[1px] border-solid border-[#2c2f31] rounded-lg px-3 duration-[400ms]" type="text" name="" id="nameInput" ref={nameInputref} />
-                                    <label id="nameLabel" className="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-1" htmlFor="name">Name</label>
+                                    <label id="nameLabel" className="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-1">Name</label>
                                 </div>
 
                                 <div className="nameINpBox relative h-fit w-[100%]">
                                     <input onFocus={ActiveInputLabelStyle} onBlur={DeActiveInputLabelStyle} onInput={ActiveGuestLoginBtn} className="inputEntity py-4 w-[100%] outline-none  bg-transparent border-[1px] border-[#2c2f31] rounded-lg px-3 duration-[400ms]" type="text" name="" id="usernameInput" ref={usernameInputref} />
-                                    <label className="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-1" htmlFor="name">Username</label>
+                                    <label className="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-1">Username</label>
                                 </div>
                                 <span className="useEmailTxt absolute text-[0.9rem] text-blue-400 font-semibold tracking-wide right-4 -bottom-8 md:right-10">Add @ in username</span>
                             </div>
