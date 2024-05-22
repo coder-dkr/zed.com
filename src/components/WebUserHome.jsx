@@ -343,7 +343,7 @@ const LeaveGuestMode = ()=>{
 
     <section id="web-scndZone" className="web-postCont middlerr pt-2 md:pt-0 w-full lg:w-6/12 border-[1px] border-solid border-[#2f3336] border-y-black">
             <div
-                className="web-middleHeader border-[1px] border-solid border-y-[#2f3336] border-x-0 border-t-0 md:bg-[rgba(0,0,0,0.7)] md:sticky md:top-0 md:backdrop-blur-2xl">
+                className="web-middleHeader border-[1px] border-solid border-y-[#2f3336] border-x-0 border-t-0 md:bg-[rgba(0,0,0,0.5)] md:sticky md:top-0 md:backdrop-blur-2xl z-[1000]">
                 <div className="web-iconBox flex py-1 px-4 justify-center md:pt-3 items-center lg:hidden">
                     <div className="web-UserImgHolder w-full flex ">
                         <img src="img/defaultUserImg.jpg" className="w-8  rounded-full" alt="" id='middleStreamUserImg' />
@@ -352,7 +352,7 @@ const LeaveGuestMode = ()=>{
                         <img src="img/zitter-com.png" className="w-14" alt=""/>
                     </div>
                     <div className="web-settingHolder w-full flex justify-end">
-                        <img src="img/gear-solid.svg" className="pr-1 w-6 cursor-pointer" alt=""/>
+                        <img src="img/logout.svg" className="pr-1 w-6 cursor-pointer" alt="" onClick={LeaveGuestMode}  />
                     </div>
                 </div>
 

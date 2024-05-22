@@ -96,6 +96,10 @@ const updatePreviewUserImg =()=>{
 
         }
     }
+    const FastDemoLogin = ()=>{
+        Navigater("/guest_user_home")
+        document.title = 'Home / Z'
+    }
     const guestPopUpClose = () => {
         document.title = 'Zed - It is What Is'
         DemoLoginPopref.current.classList.add("hidden");
@@ -195,7 +199,7 @@ const updatePreviewUserImg =()=>{
                                     <div className="randomEntry flex flex-col gap-3">
                                         <div className="RandomHead font-semibold text-xl">Too Lazy to set up?</div>
                                         <button
-                                            className="text-[#1d9bf0] border-2 border-[#485762] w-[300px] py-2 rounded-3xl font-semibold text-base duration-[100ms] hover:shadow-[0_0_15px_0.2rem_rgba(255,255,255,0.3)]">Hold
+                                            className="text-[#1d9bf0] border-2 border-[#485762] w-[300px] py-2 rounded-3xl font-semibold text-base duration-[100ms] hover:shadow-[0_0_15px_0.2rem_rgba(255,255,255,0.3)]" onClick={FastDemoLogin}  >Hold
                                             Up I got you</button>
                                     </div>
                                 </div>
