@@ -2,21 +2,67 @@ import { document } from 'postcss'
 import React ,{ useRef , useState , useEffect }from 'react'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const WebUserHome = () => {
 document.title = 'Home / Z'
 
 
+const {user, logout , isAuthenticated } = useAuth0()
+console.log("current user", user);
+
+
+
+
+//leave guest mode
+const LeaveGuestMode = ()=>{
+    let leaveConfirm =  confirm("leaving already?");
+ 
+    if(leaveConfirm === true){
+        navigate("/")
+        document.title = 'Zed - It is What Is'
+        {isAuthenticated && logout()}
+ }
+ }
+
+
+
+
+
+
+
 var userDetailList = JSON.parse(localStorage.getItem("userDetails"))
 const [guestnameState,setguestname] = useState("Guest User")
 const [guestUsernameState,setguestUsernameState] = useState("@username")
+const [userPfp,setuserPfp] = useState("img/defaultUserImg.jpg")
 
 useEffect(() => {
     function SetUserDetails(){
         if(userDetailList !== null){
+            if(isAuthenticated){
+                var updateuserData = {
+                    "guestName" : `${user.given_name}`,
+                    "guestUserName" : `${user.nickname}`,
+                    "userpfpUrl" : `${user.picture}`
+                }
+                if(localStorage.getItem("userDetails") == null){
+                    localStorage.setItem("userDetails",JSON.stringify([updateuserData]));
+                }
+                else{
+                    var temp = JSON.parse(localStorage.getItem("userDetails"))
+                    temp.splice(0,1,updateuserData);
+                    localStorage.setItem("userDetails",JSON.stringify(temp))
+    
+                }
+              
+            }
+            setuserPfp(userDetailList[0].userpfpUrl)
             setguestname(userDetailList[0].guestName)
             setguestUsernameState(userDetailList[0].guestUserName)
+            
         }
+        
+       
     }
     SetUserDetails()
 }, [])
@@ -35,25 +81,6 @@ const postFieldHeadersStyle = (e) =>{
 } 
 
 
-// window.onload = function(){
-//     // document.getElementById("web-firstzone").querySelector("userSettedName").innerHTML =`${ userDetailList[0].guestName}`;
-// document.querySelector("userSettedName").innerHTML =`${ userDetailList[0].guestName}`;
-// document.querySelector("userSettedUserName").innerHTML =`${ userDetailList[0].guestUserName}`;
-
-// // let PfpDataUrl = localStorage.getItem('userPfpImage');
-
-// // let VerticalNavUserImg = document.getElementById("VerticalNavUserImg");
-// // VerticalNavUserImg.src = PfpDataUrl;
-
-// // let middleStreamUserImg = document.getElementById("middleStreamUserImg");
-// // middleStreamUserImg.src = PfpDataUrl;
-
-// // let UserPostFieldUserImg = document.getElementById("UserPostFieldUserImg");
-// // UserPostFieldUserImg.src = PfpDataUrl;
-
-// }
-
-
 const thirdSection = useRef();
 const writtenPostSepratorRef = useRef();
 const userPostBtnnnRef = useRef();
@@ -61,6 +88,10 @@ const guestUserPostAreaRef = useRef();
 const followwingWHOref = useRef();
 const forYouref = useRef();
 const bottomNavBarRef = useRef();
+
+const UserPostFieldUserImgref = useRef();
+const VerticalNavUserImgref = useRef();
+const middleStreamUserImgref = useRef();
 
 
 
@@ -72,9 +103,10 @@ window.onscrollend = ()=>{
     },4000)  
 }
 window.onscroll = ()=>{
-    thirdSection.current.scrollTop += 5;    
+    thirdSection.current.scrollTop += 5;
     bottomNavBarRef.current.classList.replace("bg-black","bg-[rgba(0,0,0,0.4)]")
-}
+    }
+
 
 
 
@@ -189,15 +221,11 @@ const userDoubleClickLikePost = (e)=>{
 
 
 
-//leave guest mode
-const LeaveGuestMode = ()=>{
-   let leaveConfirm =  confirm("leaving already?");
+const { isLoading } = useAuth0();
 
-   if(leaveConfirm === true){
-   navigate("/")
-   document.title = 'Zed - It is What Is'
-}
-}
+    if (isLoading) {
+        return <div className='min-w-[100vw] min-h-[100vh] flex justify-center items-center text-white text-2xl bg-black'><img src="img/loader.gif" alt="Loading...." className='w-80' /></div>
+    }
 
   return (
     <>
@@ -323,7 +351,7 @@ const LeaveGuestMode = ()=>{
 
         <div className="web-NavLogoBg relative w-14 h-14 rounded-full flex justify-start items-center lg:w-fit lg:h-fit lg:py-2 lg:px-4 lg:pr-7 lg:gap-x-4  lg:mt-1 mb-4 lg:min-w-[230.5px] lg:max-w-[230.5px] lg:overflow-x-hidden">
                     <div className="web-UserImgHolder  w-14 h-14 rounded-full flex justify-center items-center overflow-hidden  lg:min-w-10 lg:min-h-10 lg:max-w-10 lg:max-h-10">
-                        <img src="img/defaultUserImg.jpg"  id="VerticalNavUserImg" alt=""/>
+                        <img src={userPfp}  id="VerticalNavUserImg" ref={VerticalNavUserImgref} />
                     </div>
                     <div className="web-UserSettedDetails hidden lg:flex flex-col justify-center items-start leading-0">
                             <span id="" className="userSettedName hidden lg:inline-flex text-sm font-bold ">{guestnameState} </span>    
@@ -346,7 +374,7 @@ const LeaveGuestMode = ()=>{
                 className="web-middleHeader border-[1px] border-solid border-y-[#2f3336] border-x-0 border-t-0 md:bg-[rgba(0,0,0,0.5)] md:sticky md:top-0 md:backdrop-blur-2xl z-[1000]">
                 <div className="web-iconBox flex py-1 px-4 justify-center md:pt-3 items-center lg:hidden">
                     <div className="web-UserImgHolder w-full flex ">
-                        <img src="img/defaultUserImg.jpg" className="w-8  rounded-full" alt="" id='middleStreamUserImg' />
+                        <img src={userPfp} className="w-8  rounded-full" alt="" id='middleStreamUserImg' ref={middleStreamUserImgref} />
                     </div>
                     <div className="web-ZLogoHolder">
                         <img src="img/zitter-com.png" className="w-14" alt=""/>
@@ -371,7 +399,7 @@ const LeaveGuestMode = ()=>{
         <div className="web-Userpost border-[1px] border-solid border-[#2f3336] border-x-0 px-4  ">
                 <div className="web-UserpostVassal  py-3 flex justify-center">
                     <div className="web-UserpostAccountImgHolder min-w-10 flex justify-center items-start mr-2">
-                        <img src="img/defaultUserImg.jpg" className="w-10  rounded-full" alt="" id='UserPostFieldUserImg'/>
+                        <img src={userPfp} className="w-10  rounded-full" alt="" id='UserPostFieldUserImg'ref={UserPostFieldUserImgref} />
                     </div>
 
                     <div className="web-UserpostContent w-full flex flex-col gap-y-[2.5px]">

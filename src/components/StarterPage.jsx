@@ -2,10 +2,14 @@ import { document } from 'postcss'
 import react, { useRef , useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import GoogleSignIn from './GoogleSignIn'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const StarterPage = (props) => {
 
+const {user} = useAuth0()
+console.log("current user", user);
 const usernameInputref = useRef();
 const nameInputref = useRef();
 const DemoLoginPopref = useRef();
@@ -78,6 +82,7 @@ const updatePreviewUserImg =()=>{
                 var userData = {
                     "guestName" : `${nameInputref.current.value}`,
                     "guestUserName" : `${usernameInputref.current.value}`,
+                    "userpfpUrl" : `${UserPostFieldUserImgref.current.src}`
                 }
 
                 if(localStorage.getItem("userDetails") == null){
@@ -88,10 +93,11 @@ const updatePreviewUserImg =()=>{
                     temp.splice(0,1,userData);
                     localStorage.setItem("userDetails",JSON.stringify(temp))
 
-                }
+                }   
 
                 Navigater("/guest_user_home")
                 document.title = 'Home / Z'
+            
             }
 
         }
@@ -143,6 +149,11 @@ const updatePreviewUserImg =()=>{
         }
     }
 
+    const { isLoading } = useAuth0();
+
+    if (isLoading) {
+        return <div className='min-w-[100vw] min-h-[100vh] flex justify-center items-center text-white text-2xl bg-black'><img src="img/loader.gif" alt="Loading...." className='' style={{width : '20px'}} /></div>;
+    }
 
     return (
         <>
@@ -169,12 +180,7 @@ const updatePreviewUserImg =()=>{
                                     <h2 className="text-2xl font-bold">Explore today.</h2>
 
                                     <div className="loginOpts flex flex-col gap-2 max-w-fit duration-[300ms]">
-                                        <div
-                                            className="continueWith Google bg-white text-black rounded-3xl flex justify-center items-center  py-2 w-[300px] h-[40px] cursor-pointer 
-                                  hover:bg-yellow-200 lg:h-[43px]">
-                                            <span><img src="img/google.webp" alt="" className="w-[1.3rem] ml-2.5" /></span>
-                                            <span className="text-base font-sans pl-3">Sign up with Google</span>
-                                        </div>
+                                        <GoogleSignIn />
                                         <div
                                             className="continueWith Apple bg-white text-black rounded-3xl flex justify-center items-center gap-x-3 py-2 w-[300px] h-[40px] cursor-pointer hover:bg-yellow-200 lg:h-[43px]">
                                             <span><img src="img/apple.webp" alt="" className="w-[1.3rem]" /></span>
@@ -271,9 +277,7 @@ const updatePreviewUserImg =()=>{
                                         <img src="img/defaultUserImg.jpg" className="w-[4.9rem] h-20  rounded-full" alt="" id='UserPostFieldUserImg' ref={UserPostFieldUserImgref} />
                                  </div>
 
-                                 {/* <div className="web-USERimgPreview min-w-20 max-w-20  max-h-20 rounded-full flex justify-center  items-start mr-2 md:pr-5 overflow-hidden object-cover">
-                                        <img src="img/defaultUserImg.jpg" className="w-20 max-w-20 overflow-hidden" alt="" id='UserPostFieldUserImg' ref={UserPostFieldUserImgref} />
-                                 </div> */}
+                                
                                  </div>
                             </div>
 
