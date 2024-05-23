@@ -203,7 +203,7 @@ useEffect(() => {
                 "accPfp" : "img/defaultUserImg.jpg",
                 "TimeagoPost" : `${getFormattedDate()}`,
                 "PostCaption" : `${guestUserPostAreaRef.current.value}`,
-                "AttachedPostImg" : `${userPostImgLinkRef.current.files[0]}` ,
+                "AttachedPostImg" : `${justforstoring.current.src}` ,
                 "HasTick": "true",
                 "id": `${Number.parseInt(Math.random() * 999).toString()}`
             }
@@ -218,7 +218,7 @@ useEffect(() => {
                 "accPfp" : `${userDetailData[0].userpfpUrl}`,
                 "TimeagoPost" : `${getFormattedDate()}`,
                 "PostCaption" : `${guestUserPostAreaRef.current.value}`,
-                "AttachedPostImg" :  `${userPostImgLinkRef.current.files[0]}`,
+                "AttachedPostImg" :  `${justforstoring.current.src}`,
                 "HasTick": "false",
                 "id": `${Number.parseInt(Math.random() * 999).toString()}`
             }
