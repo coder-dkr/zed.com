@@ -18,7 +18,7 @@ const UserPostFieldUserImgref = useRef();
 
 if(isAuthenticated){
     var updateuserData = {
-        "guestName" : `${user.given_name}`,
+        "guestName" : user.given_name ? `${user.given_name}` : `${user.name.slice(0,6)}`,
         "guestUserName" : `${user.nickname}`,
         "userpfpUrl" : `${user.picture}`
     }
@@ -96,7 +96,11 @@ const updatePreviewUserImg =()=>{
         }
     }
     const FastDemoLogin = ()=>{
-        localStorage.clear()
+        if(!isAuthenticated){
+           localStorage.removeItem("userDetails")
+        }
+        
+
         Navigater("/guest_user_home")
         document.title = 'Home / Z'
     }

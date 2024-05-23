@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import ReactTimeAgo from 'react-time-ago'
 import StarterPage from './components/StarterPage'
 import WebUserHome from './components/WebUserHome';
 import FaviconZed from './components/FavImg';
@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/" element={<StarterPage hide="hidden" bgrang="bg-black" />}/>
         <Route exact path="/guest_login" element={<StarterPage hide="nothidden" bgrang="bg-[#242d34]" />}/>
         <Route exact path="/guest_user_home"  element={<WebUserHome/>}/>
-        <Route exact path="/zed-logo"  element={<FaviconZed/>}/>
+        <Route exact path="/zedlogo"  element={<FaviconZed/>}/>
       </Routes>
       </Router>
     </>
