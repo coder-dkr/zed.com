@@ -193,8 +193,7 @@ useEffect(() => {
     
     const ActualPostStreamRef = useRef();
     function addpost(){
-        console.log(guestUserPostAreaRef.current.value)
-
+        justforstoring.current.src = userPostImgLinkRef.current.files[0];
         var userDetailData = JSON.parse(localStorage.getItem("userDetails"))
         if(userDetailData === null){
             var Apost ={
@@ -211,7 +210,7 @@ useEffect(() => {
 
         }
         else{
-            justforstoring.current.src = userPostImgLinkRef.current.files[0];
+           
             var Apost ={
                 "accName" : `${userDetailData[0].guestName}`,
                 "accUsername" : `$@{userDetailData[0].guestUserName}`,
