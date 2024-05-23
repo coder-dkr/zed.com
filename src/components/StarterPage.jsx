@@ -96,10 +96,11 @@ const updatePreviewUserImg =()=>{
         }
     }
     const FastDemoLogin = ()=>{
-        if(!isAuthenticated){
-           localStorage.removeItem("userDetails")
-        }
-        
+        // if(!isAuthenticated){
+        //    localStorage.removeItem("userDetails")
+           
+        // }
+
 
         Navigater("/guest_user_home")
         document.title = 'Home / Z'
