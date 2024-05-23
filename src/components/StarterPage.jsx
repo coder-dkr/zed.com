@@ -33,7 +33,7 @@ if(isAuthenticated){
     }
   
 }
-console.log("current user", user);
+
     let Navigater = useNavigate()
 
    

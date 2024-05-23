@@ -10,10 +10,6 @@ document.title = 'Home / Z'
 
 
 const {user, logout , isAuthenticated } = useAuth0()
-console.log("current user", user);
-
-
-
 
 //leave guest mode
 const LeaveGuestMode = ()=>{
