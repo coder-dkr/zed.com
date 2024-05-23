@@ -70,10 +70,7 @@ const updatePreviewUserImg =()=>{
 
         }
         else {
-            if (usernameInputref.current.value.charAt(0) !== '@') {
-                alert("Username must start with '@'")
-            }
-            else if(containsWhitespace(usernameInputref.current.value) === true){
+            if(containsWhitespace(usernameInputref.current.value) === true){
                 alert("Username cannot have space")
             }
             else {
@@ -99,6 +96,7 @@ const updatePreviewUserImg =()=>{
         }
     }
     const FastDemoLogin = ()=>{
+        localStorage.clear()
         Navigater("/guest_user_home")
         document.title = 'Home / Z'
     }

@@ -14,19 +14,10 @@ const {user, logout , isAuthenticated } = useAuth0()
 //leave guest mode
 const LeaveGuestMode = ()=>{
     let leaveConfirm =  confirm("leaving already?");
- 
     if(leaveConfirm === true){
         navigate("/")
         document.title = 'Zed - It is What Is'
-        {isAuthenticated && logout()}
- }
- }
-
-
-
-
-
-
+        {isAuthenticated && logout()}}}
 
 var userDetailList = JSON.parse(localStorage.getItem("userDetails"))
 const [guestnameState,setguestname] = useState("Guest User")
@@ -38,10 +29,8 @@ useEffect(() => {
         if(userDetailList !== null){
             setuserPfp(userDetailList[0].userpfpUrl)
             setguestname(userDetailList[0].guestName)
-            setguestUsernameState(userDetailList[0].guestUserName)
-            
+            setguestUsernameState(`@${userDetailList[0].guestUserName}`)   
         }
-       
     }
     SetUserDetails()
 }, [])
