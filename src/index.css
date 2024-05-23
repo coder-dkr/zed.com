@@ -47,6 +47,9 @@ body{
 
 
 /* web style */
+.web-ActualPostStream{
+    min-height: calc(100vh);
+}
 .web-header-active{
     font-weight: 600;
     color: white;  

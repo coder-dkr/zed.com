@@ -107,6 +107,10 @@ const ActiveUserPostBtn =()=>{
 }
 //user post func END
 
+const autoActivePostArea=(e)=>{
+    guestUserPostAreaRef.current.focus()
+ 
+}
 
 //search bar func
 const ActivewebSearchBarStyle = (e)=>{
@@ -184,6 +188,7 @@ useEffect(() => {
     if (storedPosts) {
       setPosts(...posts,storedPosts);
     }
+
   }, []);
     
     const ActualPostStreamRef = useRef();
@@ -499,14 +504,16 @@ const time2 = Date.now()
             </div>
 
  {/* <!-- ACTUAL POST STREAM --> */}
- <div className="web-ActualPostStream flex  flex-col overflow-x-hidden" ref={ActualPostStreamRef} >
+ <div className="web-ActualPostStream flex   flex-col overflow-x-hidden" ref={ActualPostStreamRef} >
 
 
- {[...generatedPosts].reverse().map((post, index) => (
+ {generatedPosts && generatedPosts.length > 0 ?
+ [...generatedPosts].reverse().map((post, index) => (
   <Post key={post.id} accountPfp={post.accPfp} accountName={post.accName} accountUsername={post.accUsername} postTime={<ReactTimeAgo date={Date.parse(post.TimeagoPost)} locale='en-US' />} tick={post.HasTick} postText={post.PostCaption} postimgageurl={post.AttachedPostImg} />
-))}
+)) : <div className="w-full text-center text-blue-400 my-5 font-semibold cursor-pointer" onClick={autoActivePostArea}>  Try posting now!!</div>}
 
-    {[...posts].reverse().map((post, index) => (
+    {posts && posts.length > 0 ? 
+    [...posts].reverse().map((post, index) => (
         <Post
           key={index}
           accountPfp={post.accPfp}
@@ -517,7 +524,7 @@ const time2 = Date.now()
           postText={post.PostCaption}
           postimgageurl={post.AttachedPostImg}
         />
-      ))}
+      )) : <div className="w-full text-center text-white my-5">No post yet</div>}
 
   
   {/* <Post accountPfp="img/accountImg6.jpg" accountName="Luffy Being Luffy" accountUsername="@mugiwara" postTime={`${new Date().getMinutes()}mins ago`} postText="NAI X 4 " postimgageurl="img/postImg8.gif" tick={true} />
