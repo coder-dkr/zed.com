@@ -32,7 +32,7 @@ const [userPfp,setuserPfp] = useState("img/defaultUserImg.jpg")
 
 useEffect(() => {
     function SetUserDetails(){
-        if(userDetailList !== null){x
+        if(userDetailList !== null){
             setuserPfp(userDetailList[0].userpfpUrl)
             setguestname(userDetailList[0].guestName)
             setguestUsernameState(userDetailList[0].guestUserName.charAt(0) === '@' ? `${userDetailList[0].guestUserName}`: `@${userDetailList[0].guestUserName}`)   
