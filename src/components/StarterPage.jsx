@@ -7,9 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 const StarterPage = (props) => {
-
-const {user} = useAuth0()
-console.log("current user", user);
+const {user,isAuthenticated} = useAuth0()
 const usernameInputref = useRef();
 const nameInputref = useRef();
 const DemoLoginPopref = useRef();
@@ -18,8 +16,24 @@ const StarterPagePgref = useRef();
 const guestUserProfilePicref = useRef();
 const UserPostFieldUserImgref = useRef();
 
-// const [mybgcolor,setmybgcolor] = useState({background : 'black'})
+if(isAuthenticated){
+    var updateuserData = {
+        "guestName" : `${user.given_name}`,
+        "guestUserName" : `${user.nickname}`,
+        "userpfpUrl" : `${user.picture}`
+    }
+    if(localStorage.getItem("userDetails") == null){
+        localStorage.setItem("userDetails",JSON.stringify([updateuserData]));
+    }
+    else{
+        var temp = JSON.parse(localStorage.getItem("userDetails"))
+        temp.splice(0,1,updateuserData);
+        localStorage.setItem("userDetails",JSON.stringify(temp))
 
+    }
+  
+}
+console.log("current user", user);
     let Navigater = useNavigate()
 
    
@@ -48,12 +62,7 @@ const updatePreviewUserImg =()=>{
         demonLoginBtnref.current.classList.add("cursor-not-allowed")
         demonLoginBtnref.current.classList.add("opacity-[0.5]")
         document.title = 'Guest Login for Z'
-
         StarterPagePgref.current.style.background = "#242d34";
-        // setmybgcolor({background : "#242d34"})
-
-
-
     }
     const TelePortToUserHome = () => {
         const containsWhitespace = str => /\s/.test(str);
@@ -68,17 +77,6 @@ const updatePreviewUserImg =()=>{
                 alert("Username cannot have space")
             }
             else {
-            
-        // let guestPfp =  document.getElementById("guestUserProfilePic").files[0];
-        //   let reader = new FileReader();
-        //   reader.onloadend = function() {
-        //       let base64data = reader.result;
-        //       localStorage.setItem('userPfpImage', base64data);
-        //   }
-        //   reader.readAsDataURL(guestPfp);
-          
-
-
                 var userData = {
                     "guestName" : `${nameInputref.current.value}`,
                     "guestUserName" : `${usernameInputref.current.value}`,
@@ -94,10 +92,8 @@ const updatePreviewUserImg =()=>{
                     localStorage.setItem("userDetails",JSON.stringify(temp))
 
                 }   
-
                 Navigater("/guest_user_home")
                 document.title = 'Home / Z'
-            
             }
 
         }
@@ -109,21 +105,13 @@ const updatePreviewUserImg =()=>{
     const guestPopUpClose = () => {
         document.title = 'Zed - It is What Is'
         DemoLoginPopref.current.classList.add("hidden");
-
         StarterPagePgref.current.style.background = "black";
-        // setmybgcolor({background : "black"})
-        // setmybgcolor({background : `${props.mybgrang}`})
-
-
         usernameInputref.current.value = "";
         nameInputref.current.value = "";
-
         usernameInputref.current.classList.remove("activeForInput")
         nameInputref.current.classList.remove("activeForInput")
-
         usernameInputref.current.nextElementSibling.classList.remove("activeForLabel")
         nameInputref.current.nextElementSibling.classList.remove("activeForLabel")
-
     }
     const ActiveInputLabelStyle = (e) => {
         e.target.classList.add("activeForInput")
@@ -135,20 +123,16 @@ const updatePreviewUserImg =()=>{
             e.target.nextElementSibling.classList.remove("activeForLabel")
         }
     }
-
     const checkMyBtnrang = ()=>{
         if (nameInputref.current.value === "" || usernameInputref.current.value === "") {
             demonLoginBtnref.current.classList.add("opacity-[0.5]")
             demonLoginBtnref.current.classList.add("cursor-not-allowed")
-
         }
         else {
             demonLoginBtnref.current.classList.remove("opacity-[0.5]")
             demonLoginBtnref.current.classList.remove("cursor-not-allowed")
-
         }
     }
-
     const { isLoading } = useAuth0();
 
     if (isLoading) {
@@ -156,9 +140,8 @@ const updatePreviewUserImg =()=>{
     }
 
     return (
-        <>
-
-            <div ref={StarterPagePgref} onLoad={checkMyBtnrang} id="StarterPagePg" className={`${props.bgrang} mx-auto max-w-[100vw] max-h-[100vh] sm:overflow-hidden`}>
+    <>
+      <div ref={StarterPagePgref} onLoad={checkMyBtnrang} id="StarterPagePg" className={`${props.bgrang} mx-auto max-w-[100vw] max-h-[100vh] sm:overflow-hidden`}>
                 <main className="wholeContainer text-white w-[100vw] h-[100vh] flex flex-col gap-8
       md:gap-0 md:justify-around">
                     <div className="zonebox py-10 px-10 flex flex-col gap-14  lg:flex-row md:justify-around lg:items-center ">
@@ -168,9 +151,6 @@ const updatePreviewUserImg =()=>{
                                 <img src="img/zitter-com.png" alt="" className="w-11 md:w-24 lg:w-[19.9rem]" />
                             </div>
                         </div>
-
-
-
                         <div className="entryFormCont md:w-1/2 md:flex md:justify-center">
                             <div className="formBox flex flex-col gap-10 md:gap-16">
                                 <div className="boxhead">

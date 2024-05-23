@@ -11,10 +11,9 @@ import {
 
 function App() {
   
-  const [count, setCount] = useState(0)
-
   return (
     <>
+    
     <Router>
       <Routes>
         <Route exact path="/" element={<StarterPage hide="hidden" bgrang="bg-black" />}/>

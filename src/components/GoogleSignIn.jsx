@@ -8,16 +8,13 @@ const GoogleSignIn = () => {
 
     useEffect(() => {
         {isAuthenticated && navuser("/guest_user_home")}
-       
     }, [])
 
     return (
       
         <>
-          
-
             <div onClick={e => loginWithRedirect()} className="continueWith Google bg-white text-black rounded-3xl flex justify-center items-center  py-2 w-[300px] h-[40px] cursor-pointer hover:bg-yellow-200 lg:h-[43px]">
-                <span><img src="img/google.webp" alt="" className="w-[1.3rem] ml-2.5" /></span>
+            <span><img src="img/google.webp" alt="" className="w-[1.3rem] ml-2.5" /></span>
                 <span className="text-base font-sans pl-3">Sign up with Google</span>
             </div>
         </>

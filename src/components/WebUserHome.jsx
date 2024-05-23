@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
 
 const WebUserHome = () => {
+
 document.title = 'Home / Z'
 
 
@@ -39,29 +40,11 @@ const [userPfp,setuserPfp] = useState("img/defaultUserImg.jpg")
 useEffect(() => {
     function SetUserDetails(){
         if(userDetailList !== null){
-            if(isAuthenticated){
-                var updateuserData = {
-                    "guestName" : `${user.given_name}`,
-                    "guestUserName" : `${user.nickname}`,
-                    "userpfpUrl" : `${user.picture}`
-                }
-                if(localStorage.getItem("userDetails") == null){
-                    localStorage.setItem("userDetails",JSON.stringify([updateuserData]));
-                }
-                else{
-                    var temp = JSON.parse(localStorage.getItem("userDetails"))
-                    temp.splice(0,1,updateuserData);
-                    localStorage.setItem("userDetails",JSON.stringify(temp))
-    
-                }
-              
-            }
             setuserPfp(userDetailList[0].userpfpUrl)
             setguestname(userDetailList[0].guestName)
             setguestUsernameState(userDetailList[0].guestUserName)
             
         }
-        
        
     }
     SetUserDetails()
@@ -353,6 +336,9 @@ const { isLoading } = useAuth0();
                     <div className="web-UserImgHolder  w-14 h-14 rounded-full flex justify-center items-center overflow-hidden  lg:min-w-10 lg:min-h-10 lg:max-w-10 lg:max-h-10">
                         <img src={userPfp}  id="VerticalNavUserImg" ref={VerticalNavUserImgref} />
                     </div>
+                    
+
+
                     <div className="web-UserSettedDetails hidden lg:flex flex-col justify-center items-start leading-0">
                             <span id="" className="userSettedName hidden lg:inline-flex text-sm font-bold ">{guestnameState} </span>    
                             <span id="" className="userSettedUserName text-[#70757a] text-base font-[500]">{guestUsernameState}</span>    
@@ -373,9 +359,14 @@ const { isLoading } = useAuth0();
             <div
                 className="web-middleHeader border-[1px] border-solid border-y-[#2f3336] border-x-0 border-t-0 md:bg-[rgba(0,0,0,0.5)] md:sticky md:top-0 md:backdrop-blur-2xl z-[1000]">
                 <div className="web-iconBox flex py-1 px-4 justify-center md:pt-3 items-center lg:hidden">
+                    
                     <div className="web-UserImgHolder w-full flex ">
-                        <img src={userPfp} className="w-8  rounded-full" alt="" id='middleStreamUserImg' ref={middleStreamUserImgref} />
+                    <div className="web-secondImgholder min-w-10 min-h-10 flex justify-center items-start mr-2 overflow-hidden">
+                        <img src={userPfp} className="w-10 h-10  rounded-full" alt="" id='UserPostFieldUserImg'ref={middleStreamUserImgref} />
                     </div>
+                    </div>
+
+
                     <div className="web-ZLogoHolder">
                         <img src="img/zitter-com.png" className="w-14" alt=""/>
                     </div>
@@ -399,7 +390,9 @@ const { isLoading } = useAuth0();
         <div className="web-Userpost border-[1px] border-solid border-[#2f3336] border-x-0 px-4  ">
                 <div className="web-UserpostVassal  py-3 flex justify-center">
                     <div className="web-UserpostAccountImgHolder min-w-10 flex justify-center items-start mr-2">
-                        <img src={userPfp} className="w-10  rounded-full" alt="" id='UserPostFieldUserImg'ref={UserPostFieldUserImgref} />
+                    <div className="web-secondImgholder min-w-12 min-h-12 flex justify-center items-start mr-2 overflow-hidden">
+                        <img src={userPfp} className="w-12 h-12  rounded-full" alt="" id='UserPostFieldUserImg'ref={UserPostFieldUserImgref} />
+                    </div>
                     </div>
 
                     <div className="web-UserpostContent w-full flex flex-col gap-y-[2.5px]">
