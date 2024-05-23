@@ -214,7 +214,7 @@ useEffect(() => {
            
             var Apost ={
                 "accName" : `${userDetailData[0].guestName}`,
-                "accUsername" : `$@{userDetailData[0].guestUserName}`,
+                "accUsername" : `@${userDetailData[0].guestUserName}`,
                 "accPfp" : `${userDetailData[0].userpfpUrl}`,
                 "TimeagoPost" : `${getFormattedDate()}`,
                 "PostCaption" : `${guestUserPostAreaRef.current.value}`,
