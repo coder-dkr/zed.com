@@ -82,8 +82,8 @@ const userDoubleClickLikePost = (e)=>{
     <>
       <article className="web-post border-[1px] border-solid border-[#2f3336] border-x-0 px-4 ">
                     <div className="web-postVassal py-2 pt-3 flex justify-center">
-                        <div className="web-postAccountImgHolder min-w-10 flex justify-center items-start mr-2">
-                            <img src={props.accountPfp} className="w-10  rounded-full" alt=""/>
+                        <div className="web-postAccountImgHolder  min-w-12 min-h-12 flex justify-center items-start mr-2 overflow-hidden">
+                            <img src={props.accountPfp} className="w-12 h-12  rounded-ful  rounded-full" alt="U"/>
                         </div>
 
                         <div className="web-postContent w-full flex flex-col gap-y-[2.5px]">
@@ -114,7 +114,7 @@ const userDoubleClickLikePost = (e)=>{
                             <span className="web-postTextContent text-[0.9rem] text-wrap w-80 xl:w-[540px] ">{props.postText}
                                 </span>
                             <div  onDoubleClick={userDoubleClickLikePost}    className="web-postImgCard w-11/12 md:w-full max-w-md xl:max-w-[34.5rem]  object-cover overflow-hidden rounded-2xl mt-2">  
-                                <img src={props.postimgageurl} alt="Post Image" className="xl:w-[39rem] " />
+                                <img src={props.postimgageurl} alt="" className="xl:w-[39rem] " />
                             </div>
 
                             <div className="web-analytical mt-2 flex gap-x-4 justify-between items-center w-full max-w-md xl:max-w-2xl">

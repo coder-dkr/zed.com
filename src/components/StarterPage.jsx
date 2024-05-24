@@ -244,7 +244,7 @@ const updatePreviewUserImg =()=>{
                                     <input onFocus={ActiveInputLabelStyle} onBlur={DeActiveInputLabelStyle} onInput={ActiveGuestLoginBtn} className="inputEntity py-4 w-[100%] outline-none  bg-transparent border-[1px] border-[#2c2f31] rounded-lg px-3 duration-[400ms]" type="text" name="" id="usernameInput" ref={usernameInputref} />
                                     <label htmlFor="usernameInput" className="absolute left-0 my-4 mx-4 text-[#6e7378] z-[-1] duration-[400ms] px-1">Username</label>
                                 </div>
-                                <span className="useEmailTxt absolute text-[0.9rem] text-blue-400 font-semibold tracking-wide right-4 -bottom-8 md:right-10">Add @ in username</span>
+                                <span className="useEmailTxt absolute text-[0.9rem] text-blue-400 font-semibold tracking-wide right-4 -bottom-8 md:right-10">Please Fill both fields</span>
                             </div>
 
                             <div className="profilePicInputBox px-4 flex flex-col mt-5 gap-1 md:px-10 ">
@@ -253,7 +253,7 @@ const updatePreviewUserImg =()=>{
                                 
                                 <div className="holderofPickedImg flex justify-between items-center gap-x-2">
                                 <div className="picInputBox w-2/3 bg-transparent px-5 py-6 pt-5 border-[2px] border-[#2c2f31] border-dashed rounded-lg  flex justify-center items-center">
-                                    <input className="outline-none hidden " type="file" accept="image/jpeg, image/jpg, imgage/png" id="guestUserProfilePic" ref={guestUserProfilePicref} onChange={updatePreviewUserImg} />
+                                    <input className="outline-none hidden " type="file" accept="image/jpeg, image/jpg, image/png" id="guestUserProfilePic" ref={guestUserProfilePicref} onChange={updatePreviewUserImg} />
                                     <label htmlFor="guestUserProfilePic" className="text-[1.115rem] md:text-xl font-mono cursor-pointer">Upload A picture</label>
                                 </div>
                                 <div className="web-USERimgPreview min-w-20 h-20 max-h-[80px] flex justify-center items-start mr-2 md:pr-5 ">

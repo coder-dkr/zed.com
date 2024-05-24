@@ -203,7 +203,7 @@ useEffect(() => {
                 "accPfp" : "img/defaultUserImg.jpg",
                 "TimeagoPost" : `${getFormattedDate()}`,
                 "PostCaption" : `${guestUserPostAreaRef.current.value}`,
-                "AttachedPostImg" : `${justforstoring.current.src}` ,
+                "AttachedPostImg" : justforstoring.current.src ===  null? ''  : `${justforstoring.current.src}`,
                 "HasTick": "true",
                 "id": `${Number.parseInt(Math.random() * 999).toString()}`
             }
@@ -218,7 +218,7 @@ useEffect(() => {
                 "accPfp" : `${userDetailData[0].userpfpUrl}`,
                 "TimeagoPost" : `${getFormattedDate()}`,
                 "PostCaption" : `${guestUserPostAreaRef.current.value}`,
-                "AttachedPostImg" :  `${justforstoring.current.src}`,
+                "AttachedPostImg" :  justforstoring.current.src ===  null? '' : `${justforstoring.current.src}`,
                 "HasTick": "false",
                 "id": `${Number.parseInt(Math.random() * 999).toString()}`
             }
@@ -238,30 +238,12 @@ useEffect(() => {
             
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const { isLoading } = useAuth0();
 
     if (isLoading) {
-        return <div className='min-w-[100vw] min-h-[100vh] flex justify-center items-center text-white text-2xl bg-black'><img src="img/loader.gif" alt="Loading...." className='w-80' /></div>
+        return <div className='min-w-[100vw] min-h-[100vh] flex justify-center items-center text-white text-2xl bg-black'><img src="img/loader.gif" alt="Loading...." className='w-24' /></div>
     }
 
-    const time1 = Date.parse("04-09-2022 8:10 PM")
-const time3 = Date.parse("05-23-2024 11:22 PM")
-const time2 = Date.now()
   
   return (
     <>
@@ -460,8 +442,8 @@ const time2 = Date.now()
                     <div className="web-UserPostTools mt-2 flex gap-x-4 justify-between items-center w-full max-w-lg xl:max-w-2xl">
                  <div className="web-PostToolIcons flex justify-start items-center gap-x-2 md:gap-x-[1.8rem] ">      
                             <span  onMouseOut={socialItemStyleOff}   onMouseOver={socialItemStyleOn}  className="web-socialItem text-[#6e7378] flex items-center justify-center w-fit cursor-pointer">
-                                <input type="file"  id="userPostImgLink" className='hidden' ref={userPostImgLinkRef}/>
-                                <input type="file" src="" className='hidden' ref={justforstoring}/>
+                                <input type="file"  id="userPostImgLink" className='hidden' ref={userPostImgLinkRef}  accept="image/jpeg, image/jpg, image/png, image/gif" />
+                                <input type="file" src="" className='hidden' ref={justforstoring}  accept="image/jpeg, image/jpg, image/png, image/gif" />
                                 <label htmlFor="userPostImgLink" className='cursor-pointer' >
                                     <span className="siBg w-7 h-7  flex justify-center items-center rounded-full">
                                         <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 fill-[#1b92e3] r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-z80fyv r-19wmn03"><g><path d="M3 5.5C3 4.119 4.119 3 5.5 3h13C19.881 3 21 4.119 21 5.5v13c0 1.381-1.119 2.5-2.5 2.5h-13C4.119 21 3 19.881 3 18.5v-13zM5.5 5c-.276 0-.5.224-.5.5v9.086l3-3 3 3 5-5 3 3V5.5c0-.276-.224-.5-.5-.5h-13zM19 15.414l-3-3-5 5-3-3-3 3V18.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-3.086zM9.75 7C8.784 7 8 7.784 8 8.75s.784 1.75 1.75 1.75 1.75-.784 1.75-1.75S10.716 7 9.75 7z"></path></g></svg>
@@ -531,9 +513,9 @@ const time2 = Date.now()
       )) : <div className="w-full text-center text-white my-5">No post yet</div>}
 
   
-  {/* <Post accountPfp="img/accountImg6.jpg" accountName="Luffy Being Luffy" accountUsername="@mugiwara" postTime={`${new Date().getMinutes()}mins ago`} postText="NAI X 4 " postimgageurl="img/postImg8.gif" tick={true} />
+   <Post accountPfp="img/accountImg6.jpg" accountName="Developer kun" accountUsername="@creator" postTime={<ReactTimeAgo date={Date.parse("04-21-2020 8:30 PM")} locale='en-US' />} postText="no coffee no work" postimgageurl="img/postImg8.gif" tick={true} />
 
-  <Post accountPfp="img/accountImg7.jpg" accountName="uWu" accountUsername="@daddyROY1010" postTime={`${new Date().getMinutes()}mins ago`} postText="hello heavenely" postimgageurl="img/postImg6.jpg" tick={true} />
+  {/*<Post accountPfp="img/accountImg7.jpg" accountName="uWu" accountUsername="@daddyROY1010" postTime={`${new Date().getMinutes()}mins ago`} postText="hello heavenely" postimgageurl="img/postImg6.jpg" tick={true} />
 
   <Post accountPfp="img/accountImg1.jpg" accountName="One Piece Daily" accountUsername="@opdaily" postTime={`${new Date().getMinutes()}mins ago`} postText="The Great King of the Pirates" postimgageurl="img/postImg2.jpg" tick={true} />
 
