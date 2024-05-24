@@ -193,7 +193,10 @@ useEffect(() => {
     
     const ActualPostStreamRef = useRef();
     function addpost(){
-        justforstoring.current.src = URL.createObjectURL(userPostImgLinkRef.current.files[0])
+        if(userPostImgLinkRef.current.files[0] !==  null){
+            justforstoring.current.src = URL.createObjectURL(userPostImgLinkRef.current.files[0])
+        }
+        
        
         var userDetailData = JSON.parse(localStorage.getItem("userDetails"))
         if(userDetailData === null){
