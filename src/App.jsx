@@ -1,4 +1,3 @@
-import ReactTimeAgo from 'react-time-ago'
 import StarterPage from './components/StarterPage'
 import WebUserHome from './components/WebUserHome';
 import FaviconZed from './components/FavImg';
