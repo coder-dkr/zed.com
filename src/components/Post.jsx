@@ -1,6 +1,14 @@
-import React from 'react'
+import React, {useRef , useEffect} from 'react'
 
 const Post = (props) => {
+
+const pinkItemRef = useRef()
+
+useEffect(() => {
+    if(props.isLiked){
+        pinkItemRef.current.classList.add("active-socialItem-special-pink")
+    }
+}, [])
 
 //social item style
 var likeButtonClick = false;
@@ -46,9 +54,13 @@ else{
 
 const socialItemStyleOff =(e)=>{
     if(e.currentTarget.id === 'pinkItem'){
-        if(!likeButtonClick){
-            e.currentTarget.classList.remove("active-socialItem-special-pink")
+        if(props.isLiked === false){
 
+            if(!likeButtonClick){
+                
+                e.currentTarget.classList.remove("active-socialItem-special-pink")
+                
+            }
         }
        }
        else if(e.currentTarget.id === 'greenItem'){
@@ -62,34 +74,46 @@ const socialItemStyleOff =(e)=>{
 const userDoubleClickLikePost = (e)=>{
 
      if(postImgClickLiked === true){
-       e.currentTarget.nextElementSibling.firstElementChild.firstElementChild.nextElementSibling.nextElementSibling.classList.remove("active-socialItem-special-pink")
-        postImgClickLiked = false;
-        likeButtonClick = false;
-        updateLikeClick = false;
+        if(props.isLiked === false){
+            e.currentTarget.nextElementSibling.firstElementChild.firstElementChild.nextElementSibling.nextElementSibling.classList.remove("active-socialItem-special-pink")
+            postImgClickLiked = false;
+            likeButtonClick = false;
+            updateLikeClick = false;
+        }
     }
     else{
         e.currentTarget.nextElementSibling.firstElementChild.firstElementChild.nextElementSibling.nextElementSibling.classList.add("active-socialItem-special-pink")
         postImgClickLiked = true;
         likeButtonClick = true;
         updateLikeClick = true;
+        
     }
 
 
 }
+
 //social item style END
+const accountPfpRef = useRef()
+const postimgageurlRef = useRef()
+const loadDefaultImg = ()=>{
+    accountPfpRef.current.src = "img/defaultonerror.png"
+}
+const loadDefaultPostImg =()=>{
+    postimgageurlRef.current.src = "img/defaultAttachedpostImg.webp"
+}
 
   return (
     <>
       <article className="web-post border-[1px] border-solid border-[#2f3336] border-x-0 px-4 ">
                     <div className="web-postVassal py-2 pt-3 flex justify-center">
                         <div className="web-postAccountImgHolder  min-w-12 min-h-12 flex justify-center items-start mr-2 overflow-hidden">
-                            <img src={props.accountPfp} className="w-12 h-12  rounded-ful  rounded-full" alt="U"/>
+                            <img src={props.accountPfp} ref={accountPfpRef} className="w-12 h-12  rounded-ful  rounded-full" onError={loadDefaultImg} alt=""/>
                         </div>
 
                         <div className="web-postContent w-full flex flex-col gap-y-[2.5px]">
                             <div className="web-postAccountDetail w-full flex justify-between relative">
                                 <div className="flex gap-x-2 items-center">
-                                    <span className="acc-name font-bold text-[0.94rem] flex gap-x-[3px] items-center">{props.accountName} {props.tick ? <svg viewBox="0 0 22 22" aria-label="Verified account" role="img"
+                                    <span className="acc-name font-bold text-[0.94rem] flex gap-x-[3px] items-center">{props.accountName} {props.tick === true ? <svg viewBox="0 0 22 22" aria-label="Verified account" role="img"
                                             className={`w-4 fill-[#1d9bf0] r-4qtqp9 r-yyyyoo r-1xvli5t r-bnwqim r-lrvibr r-m6rgpd r-1cvl2hr r-f9ja8p r-og9te1 r-3t4u6i`}
                                             data-testid="icon-verified">
                                             <g>
@@ -113,8 +137,8 @@ const userDoubleClickLikePost = (e)=>{
                             </div>
                             <span className="web-postTextContent text-[0.9rem] text-wrap w-80 xl:w-[540px] ">{props.postText}
                                 </span>
-                            <div  onDoubleClick={userDoubleClickLikePost}    className="web-postImgCard w-11/12 md:w-full max-w-md xl:max-w-[34.5rem]  object-cover overflow-hidden rounded-2xl mt-2">  
-                                <img src={props.postimgageurl} alt="" className="xl:w-[39rem] " />
+                            <div  onDoubleClick={userDoubleClickLikePost}    className="web-postImgCard w-11/12 md:w-full max-w-md xl:max-w-[34.5rem] max-h-fit  object-cover overflow-hidden rounded-2xl mt-2">  
+                                <img src={props.postimgageurl} onError={loadDefaultPostImg} ref={postimgageurlRef} alt="" className="xl:w-[39rem] " />
                             </div>
 
                             <div className="web-analytical mt-2 flex gap-x-4 justify-between items-center w-full max-w-md xl:max-w-2xl">
@@ -150,7 +174,7 @@ const userDoubleClickLikePost = (e)=>{
                                     </span>
 
                                     <span id="pinkItem"
-                                           onClick={LikeThePostClick}  onMouseOut={socialItemStyleOff}   onMouseOver={socialItemStyleOn}  className="web-socialItem text-[#6e7378] flex items-center justify-center w-fit cursor-pointer">
+                                           onClick={LikeThePostClick}  onMouseOut={socialItemStyleOff}   onMouseOver={socialItemStyleOn} ref={pinkItemRef}  className="web-socialItem text-[#6e7378] flex items-center justify-center w-fit cursor-pointer">
                                         <span className="siBg w-6 h-6  flex justify-center items-center rounded-full">
                                             <svg viewBox="0 0 24 24" aria-hidden="true"
                                                 className="w-4 fill-[#6e7378] r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1xvli5t r-1hdv0qi">

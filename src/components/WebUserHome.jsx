@@ -190,11 +190,17 @@ useEffect(() => {
     }
 
   }, []);
-    
+  
     const ActualPostStreamRef = useRef();
     function addpost(){
-        if(userPostImgLinkRef.current.files[0] !==  null){
-            justforstoring.current.src = URL.createObjectURL(userPostImgLinkRef.current.files[0])
+
+        if(userPostImgLinkRef.current.files[0] !==  undefined){
+            if(userPostImgLinkRef.current.files[0] !==  null){
+                justforstoring.current.src = URL.createObjectURL(userPostImgLinkRef.current.files[0])
+            }
+        }
+        else{
+            justforstoring.current.src = null
         }
         
        
@@ -206,8 +212,9 @@ useEffect(() => {
                 "accPfp" : "img/defaultUserImg.jpg",
                 "TimeagoPost" : `${getFormattedDate()}`,
                 "PostCaption" : `${guestUserPostAreaRef.current.value}`,
-                "AttachedPostImg" : justforstoring.current.src ===  null? ''  : `${justforstoring.current.src}`,
-                "HasTick": "true",
+                "AttachedPostImg" : `${justforstoring.current.src}`,
+                "HasTick": false,
+                "isLiked": false,
                 "id": `${Number.parseInt(Math.random() * 999).toString()}`
             }
             setgeneratedPosts([...generatedPosts,Apost])
@@ -221,8 +228,9 @@ useEffect(() => {
                 "accPfp" : `${userDetailData[0].userpfpUrl}`,
                 "TimeagoPost" : `${getFormattedDate()}`,
                 "PostCaption" : `${guestUserPostAreaRef.current.value}`,
-                "AttachedPostImg" :  justforstoring.current.src ===  null? '' : `${justforstoring.current.src}`,
-                "HasTick": "false",
+                "AttachedPostImg" :  `${justforstoring.current.src}`,
+                "HasTick": false,
+                "isLiked": false,
                 "id": `${Number.parseInt(Math.random() * 999).toString()}`
             }
             setgeneratedPosts([...generatedPosts,Apost])
@@ -239,6 +247,13 @@ useEffect(() => {
 
             guestUserPostAreaRef.current.value = ''
             
+    }
+
+    const loadDefaultImgforPostEntry = ()=>{
+        UserPostFieldUserImgref.current.src = "img/defaultonerror.png"
+    }
+    const loadDefaultImgforNavProfile = ()=>{
+        VerticalNavUserImgref.current.src = "img/defaultonerror.png"
     }
 
 const { isLoading } = useAuth0();
@@ -372,7 +387,7 @@ const { isLoading } = useAuth0();
 
         <div className="web-NavLogoBg relative w-14 h-14 rounded-full flex justify-start items-center lg:w-fit lg:h-fit lg:py-2 lg:px-4 lg:pr-7 lg:gap-x-4  lg:mt-1 mb-4 lg:min-w-[230.5px] lg:max-w-[230.5px] lg:overflow-x-hidden">
                     <div className="web-UserImgHolder  w-14 h-14 rounded-full flex justify-center items-center overflow-hidden  lg:min-w-10 lg:min-h-10 lg:max-w-10 lg:max-h-10">
-                        <img src={userPfp}  id="VerticalNavUserImg" ref={VerticalNavUserImgref} />
+                        <img src={userPfp} onError={loadDefaultImgforNavProfile}  id="VerticalNavUserImg" ref={VerticalNavUserImgref} />
                     </div>
                     
 
@@ -429,7 +444,7 @@ const { isLoading } = useAuth0();
                 <div className="web-UserpostVassal  py-3 flex justify-center">
                     <div className="web-UserpostAccountImgHolder min-w-10 flex justify-center items-start mr-2">
                     <div className="web-secondImgholder min-w-12 min-h-12 flex justify-center items-start mr-2 overflow-hidden">
-                        <img src={userPfp} className="w-12 h-12  rounded-full" alt="" id='UserPostFieldUserImg'ref={UserPostFieldUserImgref} />
+                        <img src={userPfp} onError={loadDefaultImgforPostEntry} className="w-12 h-12  rounded-full" alt="" id='UserPostFieldUserImg'ref={UserPostFieldUserImgref} />
                     </div>
                     </div>
 
@@ -498,7 +513,7 @@ const { isLoading } = useAuth0();
 
  {generatedPosts && generatedPosts.length > 0 ?
  [...generatedPosts].reverse().map((post, index) => (
-  <Post key={post.id} accountPfp={post.accPfp} accountName={post.accName} accountUsername={post.accUsername} postTime={<ReactTimeAgo date={Date.parse(post.TimeagoPost)} locale='en-US' />} tick={post.HasTick} postText={post.PostCaption} postimgageurl={post.AttachedPostImg} />
+  <Post key={post.id} accountPfp={post.accPfp} accountName={post.accName} accountUsername={post.accUsername} postTime={<ReactTimeAgo date={Date.parse(post.TimeagoPost)} locale='en-US' />} tick={post.HasTick}  postText={post.PostCaption} postimgageurl={post.AttachedPostImg} isLiked={post.isLiked} />
 )) : <div className="w-full text-center text-blue-400 my-5 font-semibold cursor-pointer" onClick={autoActivePostArea}>  Try posting now!!</div>}
 
     {posts && posts.length > 0 ? 
@@ -509,14 +524,13 @@ const { isLoading } = useAuth0();
           accountName={post.accName}
           accountUsername={post.accUsername}
           postTime={<ReactTimeAgo date={Date.parse(post.TimeagoPost)} locale='en-US' />}
-          tick={post.HasTick}
-          postText={post.PostCaption}
-          postimgageurl={post.AttachedPostImg}
+          tick={post.HasTick} postText={post.PostCaption}
+          postimgageurl={post.AttachedPostImg} isLiked={post.isLiked}
         />
       )) : <div className="w-full text-center text-white my-5">No post yet</div>}
 
   
-   <Post accountPfp="img/accountImg6.jpg" accountName="Developer kun" accountUsername="@creator" postTime={<ReactTimeAgo date={Date.parse("04-21-2020 8:30 PM")} locale='en-US' />} postText="no coffee no work" postimgageurl="img/postImg8.gif" tick={true} />
+   <Post accountPfp="img/accountImg6.jpg" accountName="Developer kun" accountUsername="@creator" postTime={<ReactTimeAgo date={Date.parse("04-21-2020 8:30 PM")} locale='en-US' />} postText="no coffee no work" postimgageurl="img/postImg8.gif" tick={true}  isLiked={true}/>
 
   {/*<Post accountPfp="img/accountImg7.jpg" accountName="uWu" accountUsername="@daddyROY1010" postTime={`${new Date().getMinutes()}mins ago`} postText="hello heavenely" postimgageurl="img/postImg6.jpg" tick={true} />
 
