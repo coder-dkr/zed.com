@@ -132,3 +132,11 @@ body{
     scrollbar-width: none;  /* Firefox */
   }
 
+
+  
+.edit-delete-opt{
+    display: none;
+}
+  .active-User-opts .edit-delete-opt{
+    display: inline-block;
+  }

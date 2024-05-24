@@ -36,6 +36,40 @@ const LikeThePostClick = (e)=>{
 
 }
 
+const activeUserOpts =(e)=>{
+    e.currentTarget.classList.add("active-User-opts")
+}
+const DeactiveUserOpts =(e)=>{
+    e.currentTarget.classList.remove("active-User-opts")
+}
+const EditThePost = (e)=>{
+alert("Feature not avaible yet")
+location.reload()
+}
+
+const deleteThePost=(e)=>{
+    const post = e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
+    if(post.id === "DeveLoper-post"){
+        alert("[Inavlid] - The Developer's Post is Eternal")
+    }
+    else{
+    let DelPostConfirm = confirm("Delete this Post?")
+    if(DelPostConfirm){
+        
+        var templist = JSON.parse(localStorage.getItem("PostStreamArr"))
+        templist.map((elem,index)=>{
+            
+                if(elem.id === post.id){
+                    templist.splice(index,1)
+                    localStorage.setItem("PostStreamArr",JSON.stringify(templist))
+                    post.remove()
+                }
+        })
+    }
+    }
+   
+}
+
 
 const socialItemStyleOn = (e)=>{
    if(e.currentTarget.id === 'pinkItem'){
@@ -104,7 +138,7 @@ const loadDefaultPostImg =()=>{
 
   return (
     <>
-      <article className="web-post border-[1px] border-solid border-[#2f3336] border-x-0 px-4 ">
+      <article id={props.idofpost} className="web-post border-[1px] border-solid border-[#2f3336] border-x-0 px-4 ">
                     <div className="web-postVassal py-2 pt-3 flex justify-center">
                         <div className="web-postAccountImgHolder  min-w-12 min-h-12 flex justify-center items-start mr-2 overflow-hidden">
                             <img src={props.accountPfp} ref={accountPfpRef} className="w-12 h-12  rounded-ful  rounded-full" onError={loadDefaultImg} alt=""/>
@@ -128,10 +162,14 @@ const loadDefaultPostImg =()=>{
                                     <span className="acc-post-time text-[0.9rem] text-[#71767b]">{props.postTime}</span>
                                 </div>
 
-                                <div
-                                    className="web-post3dot absolute w-7 h-7 rounded-full hover:bg-[#1c99ec33] right-0 -top-1 flex justify-center items-center">
-                                    <i
-                                        className="fa-solid fa-ellipsis text-[#71767b] hover:text-[#1c98ec] cursor-pointer"></i>
+                                <div className="web-post3dot absolute w-7 h-7 rounded-full hover:bg-[#1c99ec33] right-0 -top-1 flex justify-center items-center" onFocus={activeUserOpts} onBlur={DeactiveUserOpts}  tabIndex="100" >
+                                    <i className="fa-solid fa-ellipsis text-[#71767b] hover:text-[#1c98ec] cursor-pointer edit-delete-opt-btn"></i>
+                                    <div className="edit-delete-opt  absolute right-[20%] bottom-[5%] z-[1010]">
+                                        <ul className='bg-[rgba(0,0,0,0.2)] text-white backdrop-blur-[3px] rounded-md'>
+                                            <li className='border-[1px] border-solid border-slate-600 px-3 rounded-md my-1 hover:bg-[rgba(255,255,255,0.3)] text-left cursor-pointer hover:scale-[1.06] duration-200' onClick={EditThePost}>Edit</li>
+                                            <li className='border-[1px] border-solid border-slate-600 px-3 rounded-md my-1 hover:bg-[rgba(255,255,255,0.3)] text-left cursor-pointer hover:scale-[1.06] duration-200' onClick={deleteThePost}>Delete</li>
+                                        </ul>
+                                    </div>
                                 </div>
 
                             </div>

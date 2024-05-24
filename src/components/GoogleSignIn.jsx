@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const GoogleSignIn = () => {
     const navuser = useNavigate()
-    const { loginWithRedirect, isAuthenticated } = useAuth0()
+    const { loginWithRedirect, isAuthenticated  } = useAuth0()
 
     useEffect(() => {
         {isAuthenticated && navuser("/guest_user_home")}

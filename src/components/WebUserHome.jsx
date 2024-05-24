@@ -95,6 +95,7 @@ const DeactiveUserPostInputArea = (e)=>{
             e.target.value = ''
             userPostBtnnnRef.current.classList.replace("bg-[#1d9bf0]","bg-[#0e4e78]")
             writtenPostSepratorRef.current.classList.add('hidden')
+            postTestDisplayRef.current.src = ''
         }
 }
 const ActiveUserPostBtn =()=>{
@@ -138,11 +139,13 @@ const socialItemStyleOff =(e)=>{
 //social item style END
 
 
+
 const HostThePost = () =>{
     if(userPostBtnnnRef.current.classList.contains("bg-[#1d9bf0]")){
         guestUserPostAreaRef.current.classList.replace('h-40','h-16');
         writtenPostSepratorRef.current.classList.add('hidden')
         userPostBtnnnRef.current.classList.replace("bg-[#1d9bf0]","bg-[#0e4e78]")
+        postTestDisplayRef.current.src = ''
 
         // console.log(userPostBtnnnRef.current.parentElement.parentElement.parentElement.parentElement.parentElement.nextElementSibling)
         addpost()
@@ -256,13 +259,23 @@ useEffect(() => {
         VerticalNavUserImgref.current.src = "img/defaultonerror.png"
     }
 
+
+const postTestDisplayRef = useRef()
+const showuserUploadedPic=()=>{
+    guestUserPostAreaRef.current.focus()
+    postTestDisplayRef.current.src  =URL.createObjectURL(userPostImgLinkRef.current.files[0])
+}
+
 const { isLoading } = useAuth0();
 
     if (isLoading) {
         return <div className='min-w-[100vw] min-h-[100vh] flex justify-center items-center text-white text-2xl bg-black'><img src="img/loader.gif" alt="Loading...." className='w-24' /></div>
     }
 
-  
+
+
+
+
   return (
     <>
 
@@ -371,7 +384,7 @@ const { isLoading } = useAuth0();
                     </span>
                 </div>
     {/* <!-- NAVITEM -> POST --> */}
-                <div className="web-NavLPostIconBg w-14 h-14 rounded-full flex justify-center items-center bg-[#1d9bf0] mt-4 lg:w-full lg:h-fit lg:py-2 lg:px-4 lg:pr-10 lg:gap-x-4 cursor-pointer">
+                <div onClick={autoActivePostArea}  className="web-NavLPostIconBg w-14 h-14 rounded-full flex justify-center items-center bg-[#1d9bf0] mt-4 lg:w-full lg:h-fit lg:py-2 lg:px-4 lg:pr-10 lg:gap-x-4 cursor-pointer ">
                     <span className="web-navItemIcon">
                         <svg viewBox="0 0 24 24" aria-hidden="true" className="min-w-7 lg:min-w-0 lg:w-0 lg:hidden invert r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1472mwg r-lrsllp" style={{color : 'white'}}><g><path d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z"></path></g></svg>
                     </span>
@@ -455,12 +468,18 @@ const { isLoading } = useAuth0();
                                 placeholder="What is happening?!" name="" id="guestUserPostArea"ref={guestUserPostAreaRef} ></textarea>
                         </span>
 
+                        <div className="userInputedPostDisplay">
+                        <div  className="web-postTestDisplay w-11/12 md:w-full max-w-md xl:max-w-[34.5rem] max-h-fit  object-cover overflow-hidden rounded-2xl mt-2 max-h-20vh">  
+                                <img src='' ref={postTestDisplayRef} alt="" className="xl:w-[39rem] max-h-[30rem]" title='Your selected Post Image' />
+                            </div>
+                        </div>
+
                         <hr ref={writtenPostSepratorRef} className="hidden written-post-seprator border-[1.5px] border-solid border-[#292b2e]"/>
 
                     <div className="web-UserPostTools mt-2 flex gap-x-4 justify-between items-center w-full max-w-lg xl:max-w-2xl">
                  <div className="web-PostToolIcons flex justify-start items-center gap-x-2 md:gap-x-[1.8rem] ">      
                             <span  onMouseOut={socialItemStyleOff}   onMouseOver={socialItemStyleOn}  className="web-socialItem text-[#6e7378] flex items-center justify-center w-fit cursor-pointer">
-                                <input type="file"  id="userPostImgLink" className='hidden' ref={userPostImgLinkRef}  accept="image/jpeg, image/jpg, image/png, image/gif" />
+                                <input type="file"  id="userPostImgLink" className='hidden' ref={userPostImgLinkRef}  accept="image/jpeg, image/jpg, image/png, image/gif" onChange={showuserUploadedPic} />
                                 <input type="file" src="" className='hidden' ref={justforstoring}  accept="image/jpeg, image/jpg, image/png, image/gif" />
                                 <label htmlFor="userPostImgLink" className='cursor-pointer' >
                                     <span className="siBg w-7 h-7  flex justify-center items-center rounded-full">
@@ -513,12 +532,13 @@ const { isLoading } = useAuth0();
 
  {generatedPosts && generatedPosts.length > 0 ?
  [...generatedPosts].reverse().map((post, index) => (
-  <Post key={post.id} accountPfp={post.accPfp} accountName={post.accName} accountUsername={post.accUsername} postTime={<ReactTimeAgo date={Date.parse(post.TimeagoPost)} locale='en-US' />} tick={post.HasTick}  postText={post.PostCaption} postimgageurl={post.AttachedPostImg} isLiked={post.isLiked} />
-)) : <div className="w-full text-center text-blue-400 my-5 font-semibold cursor-pointer" onClick={autoActivePostArea}>  Try posting now!!</div>}
+  <Post idofpost={post.id} key={index} accountPfp={post.accPfp} accountName={post.accName} accountUsername={post.accUsername} postTime={<ReactTimeAgo date={Date.parse(post.TimeagoPost)} locale='en-US' />} tick={post.HasTick}  postText={post.PostCaption} postimgageurl={post.AttachedPostImg} isLiked={post.isLiked} />
+)) : <div className="w-full text-center text-blue-400 my-5 font-semibold cursor-pointer" onClick={autoActivePostArea}>  Try posting now &#x1F680;</div>}
 
     {posts && posts.length > 0 ? 
     [...posts].reverse().map((post, index) => (
-        <Post
+        <Post 
+        idofpost={post.id}
           key={index}
           accountPfp={post.accPfp}
           accountName={post.accName}
@@ -527,23 +547,23 @@ const { isLoading } = useAuth0();
           tick={post.HasTick} postText={post.PostCaption}
           postimgageurl={post.AttachedPostImg} isLiked={post.isLiked}
         />
-      )) : <div className="w-full text-center text-white my-5">No post yet</div>}
+      )) : <div className="w-full text-center text-slate-500 my-5">Make your first post</div>}
 
   
-   <Post accountPfp="img/accountImg6.jpg" accountName="Developer kun" accountUsername="@creator" postTime={<ReactTimeAgo date={Date.parse("04-21-2020 8:30 PM")} locale='en-US' />} postText="no coffee no work" postimgageurl="img/postImg8.gif" tick={true}  isLiked={true}/>
+   <Post idofpost="DeveLoper-post"  accountPfp="img/accountImg6.jpg" accountName="Developer kun" accountUsername="@creator" postTime={<ReactTimeAgo date={Date.parse("04-21-2020 8:30 PM")} locale='en-US' />} postText="no coffee no work" postimgageurl="img/postImg8.gif" tick={true}  isLiked={true}/>
 
-  {/*<Post accountPfp="img/accountImg7.jpg" accountName="uWu" accountUsername="@daddyROY1010" postTime={`${new Date().getMinutes()}mins ago`} postText="hello heavenely" postimgageurl="img/postImg6.jpg" tick={true} />
+  {/* <Post accountPfp="img/accountImg7.jpg" accountName="uWu" accountUsername="@daddyROY1010" postTime={`${new Date().getMinutes()}mins ago`} postText="hello heavenely" postimgageurl="img/postImg6.jpg" tick={true} />
 
   <Post accountPfp="img/accountImg1.jpg" accountName="One Piece Daily" accountUsername="@opdaily" postTime={`${new Date().getMinutes()}mins ago`} postText="The Great King of the Pirates" postimgageurl="img/postImg2.jpg" tick={true} />
 
-  <Post accountPfp="img/accountImg2.jpg" accountName="Strawhats" accountUsername="@realpiece" postTime={<ReactTimeAgo date={time2} locale='en-US' />} postText="black leg of the pirates" postimgageurl="img/postImg1.jpg" tick={true} />
+  <Post accountPfp="img/accountImg2.jpg" accountName="Strawhats" accountUsername="@realpiece" postTime={<ReactTimeAgo date={new Date()} locale='en-US' />} postText="black leg of the pirates" postimgageurl="img/postImg1.jpg" tick={true} />
 
     <Post accountPfp="img/accountImg4.jpg" accountName="shinobi98" accountUsername="@whiteassanruto" postTime={`${new Date().getMinutes()}mins ago`} postText="Naruto stretching that white...." postimgageurl="img/postImg4.gif" tick={true} />
 
-  <Post accountPfp="img/accountImg5.jpg" accountName="Anime Theory" accountUsername="@jjkmania" postTime={<ReactTimeAgo date={time3} locale='en-US' />} postText="What if Jujutsu kaisen was made in 90's? Lets Explore the Anime and mang industry of the last decade." postimgageurl="img/postImg5.jpg" tick={true} />
+  <Post accountPfp="img/accountImg5.jpg" accountName="Anime Theory" accountUsername="@jjkmania" postTime={<ReactTimeAgo date={new Date()} locale='en-US' />} postText="What if Jujutsu kaisen was made in 90's? Lets Explore the Anime and mang industry of the last decade." postimgageurl="img/postImg5.jpg" tick={true} />
      
-  <Post accountPfp="img/accountImg3.jpg" accountName="Demons" accountUsername="@demonslayer" postTime={<ReactTimeAgo date={time1} locale='en-US' />} postText="Destruction of W" postimgageurl="img/postImg3.jpg" tick={true} /> */}
-    
+  <Post accountPfp="img/accountImg3.jpg" accountName="Demons" accountUsername="@demonslayer" postTime={<ReactTimeAgo date={new Date()} locale='en-US' />} postText="Destruction of W" postimgageurl="img/postImg3.jpg" tick={true} />
+     */}
 
     
 
