@@ -140,3 +140,15 @@ body{
   .active-User-opts .edit-delete-opt{
     display: inline-block;
   }
+
+  .crossmaker::before{
+    position: absolute;
+    content: '';
+    z-index: 3000;
+    height: 21px;
+    width: 2px ;
+    left: 20%;
+    top: 2.5px;
+    transform: rotate(35deg);
+    background-color: white;
+  }

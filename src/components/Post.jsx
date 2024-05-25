@@ -42,10 +42,22 @@ const activeUserOpts =(e)=>{
 const DeactiveUserOpts =(e)=>{
     e.currentTarget.classList.remove("active-User-opts")
 }
-const EditThePost = (e)=>{
-alert("Feature not avaible yet")
-location.reload()
+const PinThePost = (e) => {
+    const post = e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
+    let templist = JSON.parse(localStorage.getItem("PostStreamArr"));
+    let ispinned = templist.some(elem => elem.id === post.id && elem.orderof === "order-1");
+
+    templist = templist.map((elem) => {
+        if (elem.id === post.id) {
+            elem.orderof = ispinned ? 'order-2' : 'order-1';
+        }
+        return elem;
+    });
+
+    localStorage.setItem("PostStreamArr", JSON.stringify(templist));
+    location.reload();
 }
+
 
 const deleteThePost=(e)=>{
     const post = e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
@@ -138,8 +150,9 @@ const loadDefaultPostImg =()=>{
 
   return (
     <>
-      <article id={props.idofpost} className="web-post border-[1px] border-solid border-[#2f3336] border-x-0 px-4 ">
-                    <div className="web-postVassal py-2 pt-3 flex justify-center">
+      <article id={props.idofpost} className={` ${props.orderof}  web-post border-[1px] border-solid border-[#2f3336] border-x-0 px-4 `}>
+                { props.orderof === "order-1"?<span className='px-7 text-[0.85rem] text-[#71767b] font-bold flex  items-center mt-1 gap-x-2'><i className="fa-solid fa-thumbtack relative top-[0.5px]" style={{color: '#71767b'}}></i>Pinned</span> : <span/>}
+                    <div className={`web-postVassal py-2 ${props.orderof === "order-1" ? 'pt-1' : 'pt-3'} flex justify-center`}>
                         <div className="web-postAccountImgHolder  min-w-12 min-h-12 flex justify-center items-start mr-2 overflow-hidden">
                             <img src={props.accountPfp} ref={accountPfpRef} className="w-12 h-12  rounded-ful  rounded-full" onError={loadDefaultImg} alt=""/>
                         </div>
@@ -164,10 +177,11 @@ const loadDefaultPostImg =()=>{
 
                                 <div className="web-post3dot absolute w-7 h-7 rounded-full hover:bg-[#1c99ec33] right-0 -top-1 flex justify-center items-center" onFocus={activeUserOpts} onBlur={DeactiveUserOpts}  tabIndex="100" >
                                     <i className="fa-solid fa-ellipsis text-[#71767b] hover:text-[#1c98ec] cursor-pointer edit-delete-opt-btn"></i>
-                                    <div className="edit-delete-opt  absolute right-[20%] bottom-[5%] z-[1010]">
-                                        <ul className='bg-[rgba(0,0,0,0.2)] text-white backdrop-blur-[3px] rounded-md'>
-                                            <li className='border-[1px] border-solid border-slate-600 px-3 rounded-md my-1 hover:bg-[rgba(255,255,255,0.3)] text-left cursor-pointer hover:scale-[1.06] duration-200' onClick={EditThePost}>Edit</li>
-                                            <li className='border-[1px] border-solid border-slate-600 px-3 rounded-md my-1 hover:bg-[rgba(255,255,255,0.3)] text-left cursor-pointer hover:scale-[1.06] duration-200' onClick={deleteThePost}>Delete</li>
+                                    <div className="edit-delete-opt  absolute right-[20%] bottom-[5%] z-[2999]">
+                                        <ul className='bg-[rgba(0,0,0,0.2)]  text-white backdrop-blur-[3px] rounded-md '>
+                                            <li className={`${props.orderof === "order-1"? 'crossmaker': ''} border-[1px] border-solid border-slate-600 px-3 rounded-md my-1 hover:bg-[rgba(255,255,255,0.2)] text-left cursor-pointer hover:scale-[1.1] hover:border-black duration-200 `} onClick={PinThePost}>
+                                            <i className="fa-solid fa-thumbtack relative top-[0.5px]" style={{color: 'white'}}></i>   {props.orderof === "order-1"? 'Unpin': 'Pin'}</li>
+                                            <li className='border-[1px] text-[#ff0000] border-solid border-slate-600 px-3 rounded-md my-1 hover:bg-[rgba(255,255,255,0.2)]  hover:border-black text-left cursor-pointer hover:scale-[1.1] duration-200 flex items-center gap-x-1 ' onClick={deleteThePost}><i className="fa-solid fa-trash" style={{color:'#ff0000'}}></i>Delete</li>
                                         </ul>
                                     </div>
                                 </div>

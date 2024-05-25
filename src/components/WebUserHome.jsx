@@ -218,6 +218,7 @@ useEffect(() => {
                 "AttachedPostImg" : `${justforstoring.current.src}`,
                 "HasTick": false,
                 "isLiked": false,
+                "orderof": "order-2",
                 "id": `${Number.parseInt(Math.random() * 999).toString()}`
             }
             setgeneratedPosts([...generatedPosts,Apost])
@@ -234,6 +235,7 @@ useEffect(() => {
                 "AttachedPostImg" :  `${justforstoring.current.src}`,
                 "HasTick": false,
                 "isLiked": false,
+                "orderof": "order-2",
                 "id": `${Number.parseInt(Math.random() * 999).toString()}`
             }
             setgeneratedPosts([...generatedPosts,Apost])
@@ -384,7 +386,7 @@ const { isLoading } = useAuth0();
                     </span>
                 </div>
     {/* <!-- NAVITEM -> POST --> */}
-                <div onClick={autoActivePostArea}  className="web-NavLPostIconBg w-14 h-14 rounded-full flex justify-center items-center bg-[#1d9bf0] mt-4 lg:w-full lg:h-fit lg:py-2 lg:px-4 lg:pr-10 lg:gap-x-4 cursor-pointer ">
+                <div onClick={autoActivePostArea}  className="web-NavLPostIconBg w-14 h-14 rounded-full flex justify-center items-center bg-[#1d9bf0] mt-2 lg:w-full lg:h-fit lg:py-2 lg:px-4 lg:pr-10 lg:gap-x-4 cursor-pointer ">
                     <span className="web-navItemIcon">
                         <svg viewBox="0 0 24 24" aria-hidden="true" className="min-w-7 lg:min-w-0 lg:w-0 lg:hidden invert r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1472mwg r-lrsllp" style={{color : 'white'}}><g><path d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z"></path></g></svg>
                     </span>
@@ -398,7 +400,7 @@ const { isLoading } = useAuth0();
 
 {/* <!-- User INFO -> Panel --> */}
 
-        <div className="web-NavLogoBg relative w-14 h-14 rounded-full flex justify-start items-center lg:w-fit lg:h-fit lg:py-2 lg:px-4 lg:pr-7 lg:gap-x-4  lg:mt-1 mb-4 lg:min-w-[230.5px] lg:max-w-[230.5px] lg:overflow-x-hidden">
+        <div className="web-NavLogoBg relative w-14 h-14 rounded-full flex justify-start items-center lg:w-fit lg:h-fit lg:py-2 lg:px-4 lg:pr-7 lg:gap-x-4  lg:mt-1 mb-4 lg:min-w-[230.5px] lg:max-w-[230.5px] lg:overflow-hidden">
                     <div className="web-UserImgHolder  w-14 h-14 rounded-full flex justify-center items-center overflow-hidden  lg:min-w-10 lg:min-h-10 lg:max-w-10 lg:max-h-10">
                         <img src={userPfp} onError={loadDefaultImgforNavProfile}  id="VerticalNavUserImg" ref={VerticalNavUserImgref} />
                     </div>
@@ -410,7 +412,7 @@ const { isLoading } = useAuth0();
                             <span id="" className="userSettedUserName text-[#70757a] text-base font-[500]">{guestUsernameState}</span>    
                     </div>
                     <div className="web-3dotnav absolute  w-7 h-7 rounded-full hidden  lg:flex justify-center items-center right-5 top-[6px] ">
-                      <i className="fa-solid fa-ellipsis text-[#71767b]  cursor-pointer"></i>
+                      <i className="fa-solid fa-ellipsis text-white  cursor-pointer"></i>
                     </div>
 
         </div>
@@ -421,7 +423,7 @@ const { isLoading } = useAuth0();
 
         </section>
 
-    <section id="web-scndZone" className="web-postCont middlerr pt-2 md:pt-0 w-full lg:w-6/12 border-[1px] border-solid border-[#2f3336] border-y-black">
+    <section id="web-scndZone" className="web-postCont mx-3 md:mx-0 middlerr pt-2 md:pt-0 w-full lg:w-7/12 border-[1px] border-solid border-[#2f3336] border-y-black">
             <div
                 className="web-middleHeader border-[1px] border-solid border-y-[#2f3336] border-x-0 border-t-0 md:bg-[rgba(0,0,0,0.5)] md:sticky md:top-0 md:backdrop-blur-2xl z-[1000]">
                 <div className="web-iconBox flex py-1 px-4 justify-center md:pt-3 items-center lg:hidden">
@@ -527,18 +529,19 @@ const { isLoading } = useAuth0();
             </div>
 
  {/* <!-- ACTUAL POST STREAM --> */}
- <div className="web-ActualPostStream flex   flex-col overflow-x-hidden" ref={ActualPostStreamRef} >
+ <div className="web-ActualPostStream flex flex-col overflow-x-hidden" ref={ActualPostStreamRef} >
 
 
  {generatedPosts && generatedPosts.length > 0 ?
  [...generatedPosts].reverse().map((post, index) => (
-  <Post idofpost={post.id} key={index} accountPfp={post.accPfp} accountName={post.accName} accountUsername={post.accUsername} postTime={<ReactTimeAgo date={Date.parse(post.TimeagoPost)} locale='en-US' />} tick={post.HasTick}  postText={post.PostCaption} postimgageurl={post.AttachedPostImg} isLiked={post.isLiked} />
+  <Post orderof={post.orderof} idofpost={post.id} key={index} accountPfp={post.accPfp} accountName={post.accName} accountUsername={post.accUsername} postTime={<ReactTimeAgo date={Date.parse(post.TimeagoPost)} locale='en-US' />} tick={post.HasTick}  postText={post.PostCaption} postimgageurl={post.AttachedPostImg} isLiked={post.isLiked} />
 )) : <div className="w-full text-center text-blue-400 my-5 font-semibold cursor-pointer" onClick={autoActivePostArea}>  Try posting now &#x1F680;</div>}
 
     {posts && posts.length > 0 ? 
     [...posts].reverse().map((post, index) => (
         <Post 
-        idofpost={post.id}
+        orderof={post.orderof}
+         idofpost={post.id}
           key={index}
           accountPfp={post.accPfp}
           accountName={post.accName}
@@ -550,7 +553,7 @@ const { isLoading } = useAuth0();
       )) : <div className="w-full text-center text-slate-500 my-5">Make your first post</div>}
 
   
-   <Post idofpost="DeveLoper-post"  accountPfp="img/accountImg6.jpg" accountName="Developer kun" accountUsername="@creator" postTime={<ReactTimeAgo date={Date.parse("04-21-2020 8:30 PM")} locale='en-US' />} postText="no coffee no work" postimgageurl="img/postImg8.gif" tick={true}  isLiked={true}/>
+   <Post orderof="order-3" idofpost="DeveLoper-post"  accountPfp="img/accountImg6.jpg" accountName="Developer kun" accountUsername="@creator" postTime={<ReactTimeAgo date={Date.parse("04-21-2020 8:30 PM")} locale='en-US' />} postText="no coffee no work" postimgageurl="img/postImg8.gif" tick={true}  isLiked={true}/>
 
   {/* <Post accountPfp="img/accountImg7.jpg" accountName="uWu" accountUsername="@daddyROY1010" postTime={`${new Date().getMinutes()}mins ago`} postText="hello heavenely" postimgageurl="img/postImg6.jpg" tick={true} />
 
