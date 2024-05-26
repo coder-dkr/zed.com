@@ -227,12 +227,12 @@ useEffect(() => {
         else{
            
             var Apost ={
-                "accName" : `${userDetailData[0].guestName}`,
+                "accName" : userDetailData[0].guestName,
                 "accUsername" : `@${userDetailData[0].guestUserName}`,
-                "accPfp" : `${userDetailData[0].userpfpUrl}`,
+                "accPfp" : userDetailData[0].userpfpUrl,
                 "TimeagoPost" : `${getFormattedDate()}`,
                 "PostCaption" : `${guestUserPostAreaRef.current.value}`,
-                "AttachedPostImg" :  `${justforstoring.current.src}`,
+                "AttachedPostImg" :  justforstoring.current.src,
                 "HasTick": false,
                 "isLiked": false,
                 "orderof": "order-2",
@@ -256,6 +256,7 @@ useEffect(() => {
 
     const loadDefaultImgforPostEntry = ()=>{
         UserPostFieldUserImgref.current.src = "img/defaultonerror.png"
+    
     }
     const loadDefaultImgforNavProfile = ()=>{
         VerticalNavUserImgref.current.src = "img/defaultonerror.png"
@@ -423,7 +424,7 @@ const { isLoading } = useAuth0();
 
         </section>
 
-    <section id="web-scndZone" className="web-postCont mx-3 md:mx-0 middlerr pt-2 md:pt-0 w-full lg:w-7/12 border-[1px] border-solid border-[#2f3336] border-y-black">
+    <section id="web-scndZone" className="web-postCont mr-1 lg:mr-0 md:px-0 middlerr pt-2 md:pt-0 w-full lg:w-7/12 border-[1px] border-solid border-[#2f3336] border-y-black">
             <div
                 className="web-middleHeader border-[1px] border-solid border-y-[#2f3336] border-x-0 border-t-0 md:bg-[rgba(0,0,0,0.5)] md:sticky md:top-0 md:backdrop-blur-2xl z-[1000]">
                 <div className="web-iconBox flex py-1 px-4 justify-center md:pt-3 items-center lg:hidden">
