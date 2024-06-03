@@ -638,12 +638,12 @@ const { isLoading } = useAuth0();
           <button className="web-logoutBtn py-2 pt-1 px-7  rounded-3xl bg-[#1d9bf0] font-bold mt-2" onClick={LeaveGuestMode}>Logout</button>
         </div>
 
-        <div className="web-HappeningNewBox flex flex-col items-start border-[1px] border-solid border-[#2f3336] rounded-2xl px-4 py-4 pt-2 w-full gap-y-5">
+        <div className="web-HappeningNewBox flex flex-col items-start border-[1px] border-solid border-[#2f3336] rounded-2xl px-4 pl-2 py-4 pt-2 w-full gap-y-5">
             <span className="web-newBoxHeader text-lg font-bold">
                 whats happening?
             </span>
 
-            <div className="web-happenContent relative w-full flex flex-col">
+            <div className="web-happenContent relative w-full flex flex-col py-1 rounded-sm px-2">
                 <div className="web-happenTopic flex items-center">
                     <span className="text-[#70757a] text-xs">Trending in India</span>
                     <div className="web-post3dot absolute w-7 h-7 rounded-full hover:bg-[#1c99ec33] right-0 flex justify-center items-center">
@@ -656,7 +656,7 @@ const { isLoading } = useAuth0();
                 </div>
             </div>
 
-            <div className="web-happenContent relative w-full flex flex-col">
+            <div className="web-happenContent relative w-full flex flex-col py-1 rounded-sm px-2">
                 <div className="web-happenTopic flex items-center">
                     <span className="text-[#70757a] text-xs">Entertainment · Trending</span>
                     <div className="web-post3dot absolute w-7 h-7 rounded-full hover:bg-[#1c99ec33] right-0 flex justify-center items-center">
@@ -669,7 +669,7 @@ const { isLoading } = useAuth0();
                 </div>
             </div>
 
-            <div className="web-happenContent relative w-full flex flex-col">
+            <div className="web-happenContent relative w-full flex flex-col py-1 rounded-sm px-2">
                 <div className="web-happenTopic flex items-center">
                     <span className="text-[#70757a] text-xs">Padhle · bhai</span>
                     <div className="web-post3dot absolute w-7 h-7 rounded-full hover:bg-[#1c99ec33] right-0 flex justify-center items-center">
@@ -684,7 +684,7 @@ const { isLoading } = useAuth0();
                 </div>
             </div>
 
-            <div className="web-happenContent relative w-full flex flex-col">
+            <div className="web-happenContent relative w-full flex flex-col py-1 rounded-sm px-2">
                 <div className="web-happenTopic flex items-center">
                     <span className="text-[#70757a] text-xs">Entertainment · Trending</span>
                     <div className="web-post3dot absolute w-7 h-7 rounded-full hover:bg-[#1c99ec33] right-0 flex justify-center items-center">
@@ -697,7 +697,7 @@ const { isLoading } = useAuth0();
                 </div>
             </div>
 
-            <div className="web-happenContent relative w-full flex flex-col">
+            <div className="web-happenContent relative w-full flex flex-col py-1 rounded-sm px-2">
                 <div className="web-happenTopic flex items-center">
                     <span className="text-[#70757a] text-xs">Politics · Trending</span>
                     <div className="web-post3dot absolute w-7 h-7 rounded-full hover:bg-[#1c99ec33] right-0 flex justify-center items-center">
@@ -716,12 +716,12 @@ const { isLoading } = useAuth0();
    
         </div>
 
-        <div className="web-WhoToFollowBox flex flex-col items-start border-[1px] border-solid border-[#2f3336] rounded-2xl px-4 py-4 pt-2 w-full gap-y-4 pr-2">
+        <div className="web-WhoToFollowBox flex flex-col items-start border-[1px] border-solid border-[#2f3336] rounded-2xl px-4 py-4 pt-2 w-full gap-y-1 pr-2">
             <span className="web-newBoxHeader text-lg font-bold">
                 Who to follow
             </span>
 
-            <div className="web-whotoFollowContent relative w-full flex gap-x-2 xl:justify-evenly">
+            <div className="web-whotoFollowContent relative w-full flex gap-x-2 xl:justify-evenly py-2 rounded-md">
                 <div className="web-FollowAccImg flex items-center w-10 h-10 overflow-hidden rounded-sm">
                     <img src="img/folllowRec/followImg1.jpg" alt=""/>
                 </div>
@@ -752,7 +752,7 @@ const { isLoading } = useAuth0();
 
             </div>
 
-            <div className="web-whotoFollowContent relative w-full flex gap-x-2 xl:justify-evenly">
+            <div className="web-whotoFollowContent relative w-full flex gap-x-2 xl:justify-evenly py-2 rounded-md">
                 <div className="web-FollowAccImg flex items-center w-10 h-10 overflow-hidden rounded-sm">
                     <img src="img/folllowRec/followImg1-5.jpg" alt=""/>
                 </div>
@@ -775,7 +775,7 @@ const { isLoading } = useAuth0();
 
             </div>
 
-            <div className="web-whotoFollowContent relative w-full flex gap-x-2 xl:justify-evenly">
+            <div className="web-whotoFollowContent relative w-full flex gap-x-2 xl:justify-evenly py-2 rounded-md">
                 <div className="web-FollowAccImg flex items-center w-10 h-10 overflow-hidden rounded-sm">
                     <img src="img/folllowRec/followImg2.jpg" alt=""/>
                 </div>

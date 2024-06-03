@@ -126,6 +126,15 @@ body{
     display: none;
   }
   
+
+.web-happenContent:hover,.web-whotoFollowContent:hover{
+    background-color: #ffffff23;
+
+}
+
+
+
+
   /* Hide scrollbar for IE, Edge and Firefox */
 #web-ThirdZone {
     -ms-overflow-style: none;  /* IE and Edge */
